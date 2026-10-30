@@ -96,6 +96,7 @@
   "work.ics"
  ],
  "lugnutapp-overlay": [
+  "_headers",
   "calendar-icon.svg",
   "chrome.json",
   "lugnut-icon.svg",
