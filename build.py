@@ -22,7 +22,7 @@ STUDIO = "https://loonsoftworks.com"
 APPS = {
     "lugnut": {"name": "Lugnut", "url": "https://lugnut.loonsoftworks.com", "icon": "lugnut-icon.svg"},
     "calendar": {"name": "Calendar Corrector", "url": "https://calendarcorrector.loonsoftworks.com", "icon": "calendar-icon.svg"},
-    "truffe": {"name": "Truffe", "url": "https://truffe.loonsoftworks.com", "icon": "truffe-icon.svg"},
+    "truffe": {"name": "Truffe", "url": "https://truffe.loonsoftworks.com", "icon": "truffe-icon.webp"},
 }
 
 # Strings used in the shared chrome
@@ -80,7 +80,7 @@ SITES = {
                    nav={"en": [("apps", "Apps", "/#apps"), ("how", "How we build", "/#how"), ("contact", "Contact", "/#contact")],
                         "fr": [("apps", "Apps", "/fr/#apps"), ("how", "Notre façon de faire", "/fr/#how"), ("contact", "Nous joindre", "/fr/#contact")]}),
     "truffe": dict(project="truffe", domain=APPS["truffe"]["url"], key="truffe", name="Truffe", langs=["en", "fr"],
-                   icon="/favicon.svg", theme="#6a4cf5", og="/img/og.png",
+                   icon="/img/truffe-icon.webp", theme="#F9EEE2", og={"en": "/img/og.jpg", "fr": "/img/og-fr.jpg"}, favicon=("/favicon.png", "image/png"),
                    nav={"en": [("home", "Features", "/#features"), ("privacy-h", "Privacy", "/#privacy"), ("support", "Help", "/support/")],
                         "fr": [("home", "Fonctions", "/fr/#features"), ("privacy-h", "Confidentialité", "/fr/#privacy"), ("support", "Aide", "/fr/aide/")]},
                    footer_app={"en": [("Features", "/#features"), ("Help", "/support/"), ("Privacy policy", "/privacy/"), ("Terms of use", "/terms/")],
@@ -175,7 +175,8 @@ def head(page, alts):
             links += f'<link rel="alternate" hreflang="{l}" href="{s["domain"]}{p}">\n'
         if len(alts) > 1 and "en" in alts:
             links += f'<link rel="alternate" hreflang="x-default" href="{s["domain"]}{alts["en"]}">\n'
-    og_img = s["domain"] + s["og"]
+    og_img = s["domain"] + (s["og"][lang] if isinstance(s["og"], dict) else s["og"])
+    fav_href, fav_type = s.get("favicon", ("/favicon.svg", "image/svg+xml"))
     ld = page.get("jsonld", "")
     robots = '<meta name="robots" content="noindex">\n' if page["path"] == "/404.html" else ""
     return f"""<!doctype html>
@@ -197,7 +198,7 @@ def head(page, alts):
 <meta property="og:image:alt" content="{esc(s['name'])}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{fav_href}" type="{fav_type}">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/loon.css?v={CSS_HASH}">
 {ld}</head>

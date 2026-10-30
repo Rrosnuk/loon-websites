@@ -1,10 +1,10 @@
 // Renders og images (1200x630) and apple-touch-icons (180x180) with the local Chromium.
+// Truffe's come from its logo: furry-friends/brand/make_brand_assets.py --web <this repo>.
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
 const sites = {
   studio:   { name: 'Loon Softworks', line: 'Small, careful apps from Ontario', accent: '#0f2a3a', icon: 'loon-mark.svg', ogOut: 'src/studio/static/og.png', touchOut: 'src/studio/static/apple-touch-icon.png', bg:'#f5f6f7' },
-  truffe:   { name: 'Truffe', line: 'Every vet paper, read by your phone.', accent: '#6a4cf5', icon: 'truffe-icon.svg', ogOut: 'src/truffe/static/img/og.png', touchOut: 'src/truffe/static/apple-touch-icon.png', bg:'#f2efff' },
   calendar: { name: 'Calendar Corrector', line: 'Edit the calendars you subscribe to.', accent: '#1d4ed8', icon: 'calendar-icon.svg', ogOut: 'src/calendarcorrector/static/img/og.png', touchOut: 'src/calendarcorrector/static/apple-touch-icon.png', bg:'#eef3ff' },
 };
 (async () => {

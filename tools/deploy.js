@@ -108,7 +108,7 @@ window.LOON = (() => {
     entries.push({ name: 'site.css', data: await get(RAW + 'dist/lugnutapp-overlay/site.css') });
     entries.push({ name: 'site.js', data: await get(RAW + 'dist/lugnutapp-overlay/site.js') });
     entries.push({ name: '_headers', data: await get(RAW + 'dist/lugnutapp-overlay/_headers') });
-    for (const ic of ['lugnut-icon.svg', 'calendar-icon.svg', 'truffe-icon.svg']) entries.push({ name: 'img/' + ic, data: await get(RAW + 'dist/lugnutapp-overlay/' + ic) });
+    for (const ic of ['lugnut-icon.svg', 'calendar-icon.svg', 'truffe-icon.webp']) entries.push({ name: 'img/' + ic, data: await get(RAW + 'dist/lugnutapp-overlay/' + ic) });
     return { entries, changed };
   }
 

@@ -19,7 +19,9 @@
   color-scheme: light dark;
 }
 html[data-site="lugnut"] { --accent: #c24705; --accent-fill: #e4570b; --tint: #fdf1ea; }
-html[data-site="truffe"] { --accent: #6a4cf5; --accent-fill: #6a4cf5; --tint: #f2efff; }
+/* Truffe takes its palette from the logo: cream paper, espresso ink, taupe tagline. */
+html[data-site="truffe"] { --bg: #fffcf8; --surface: #f9eee2; --raised: #ffffff; --line: #ecdfcf; --fg: #2e2723; --muted: #6b6058;
+  --accent: #3a322c; --accent-fill: #3a322c; --on-accent: #f9eee2; --tint: #f9eee2; --shadow: 0 1px 2px rgb(58 50 44 / .06), 0 10px 30px rgb(58 50 44 / .08); }
 html[data-site="calendar"] { --accent: #1d4ed8; --accent-fill: #1d4ed8; --tint: #eef3ff; }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +32,8 @@ html[data-site="calendar"] { --accent: #1d4ed8; --accent-fill: #1d4ed8; --tint: 
     --shadow: none;
   }
   html[data-site="lugnut"] { --accent: #ff8a4c; --accent-fill: #ff8a4c; --tint: #2a1a12; }
-  html[data-site="truffe"] { --accent: #a99bff; --accent-fill: #a99bff; --tint: #1e1a33; }
+  html[data-site="truffe"] { --bg: #16120f; --surface: #1f1a16; --raised: #26201b; --line: #3b322b; --fg: #f4ebe0; --muted: #bbac9e;
+    --accent: #f1dfc8; --accent-fill: #f1dfc8; --on-accent: #2a231e; --tint: #2a231e; --shadow: none; }
   html[data-site="calendar"] { --accent: #8ab0ff; --accent-fill: #8ab0ff; --tint: #151e33; }
 }
 
@@ -268,9 +271,21 @@ td.us, th.us { background: var(--tint); font-weight: 600; }
 @media print { .site-header, .site-footer, .android-note, .toc { display: none; } body { background: #fff; color: #000; } }
 .app-card[data-app="lugnut"] { --card-accent: #c24705; }
 .app-card[data-app="calendar"] { --card-accent: #1d4ed8; }
-.app-card[data-app="truffe"] { --card-accent: #6a4cf5; }
+.app-card[data-app="truffe"] { --card-accent: #3a322c; }
 @media (prefers-color-scheme: dark) {
   .app-card[data-app="lugnut"] { --card-accent: #ff8a4c; }
   .app-card[data-app="calendar"] { --card-accent: #8ab0ff; }
-  .app-card[data-app="truffe"] { --card-accent: #a99bff; }
+  .app-card[data-app="truffe"] { --card-accent: #f1dfc8; }
 }
+
+/* Truffe type: serif headings to sit with the wordmark; the tagline in the logo's own italic. */
+@font-face { font-family: "Truffe Tagline"; font-style: italic; font-weight: 500; font-display: swap; src: url("/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); }
+html[data-site="truffe"] { --serif: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, Cambria, "Times New Roman", serif; }
+html[data-site="truffe"] h1, html[data-site="truffe"] h2, html[data-site="truffe"] h3, html[data-site="truffe"] .brand span { font-family: var(--serif); font-weight: 700; letter-spacing: -.012em; }
+html[data-site="truffe"] .hero .app-icon, html[data-site="truffe"] .brand img { border-radius: 22.5%; }
+html[data-site="truffe"] .eyebrow, html[data-site="truffe"] .feature .kicker { color: var(--muted); }
+html[data-site="truffe"] .faq summary { font-family: var(--serif); font-weight: 650; }
+html[data-site="truffe"] .site-footer { background: var(--surface); }
+.tagline { font-family: "Truffe Tagline", var(--serif, Georgia), serif; font-style: italic; font-weight: 500; font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem); color: var(--muted); letter-spacing: 0; margin: 0 auto var(--s5); }
+.closing-nose { display: block; width: 168px; height: 168px; border-radius: 50%; margin: 0 auto var(--s5); }
+.closing .rule { width: 120px; height: 1px; background: var(--muted); opacity: .5; margin: 0 auto var(--s4); border: 0; }
