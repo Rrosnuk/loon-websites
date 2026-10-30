@@ -88,6 +88,7 @@ window.LOON = (() => {
       oldFooter.replaceWith(f);
     }
     body.querySelector('header.site-header')?.removeAttribute('data-langs');
+    body.querySelectorAll('script[src="/site.js"]').forEach(s => s.remove());
     const js = doc.createElement('script'); js.src = '/site.js'; js.defer = true; body.append(js);
     return '<!doctype html>\n' + root.outerHTML + '\n';
   }
