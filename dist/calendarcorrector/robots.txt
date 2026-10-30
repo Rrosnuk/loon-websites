@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calendarcorrector.loonsoftworks.com/sitemap.xml

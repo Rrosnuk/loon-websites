@@ -1,0 +1,211 @@
+{
+ "cssHash": "7d4246f1",
+ "email": "support@loonsoftworks.com",
+ "names": {
+  "en": "English",
+  "fr": "Français",
+  "es": "Español",
+  "de": "Deutsch"
+ },
+ "htmlLang": {
+  "en": "en",
+  "fr": "fr-CA",
+  "es": "es",
+  "de": "de"
+ },
+ "globe": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z\"/></svg>",
+ "langs": {
+  "en": {
+   "skip": "Skip to content",
+   "language": "Language",
+   "legalTitle": "Legal",
+   "app": "The app",
+   "legalLinks": [
+    [
+     "Accessibility",
+     "https://loonsoftworks.com/accessibility/"
+    ],
+    [
+     "Legal notice",
+     "https://loonsoftworks.com/legal/"
+    ]
+   ],
+   "studioItems": [
+    [
+     "Lugnut",
+     "https://lugnut.loonsoftworks.com/"
+    ],
+    [
+     "Calendar Corrector",
+     "https://calendarcorrector.loonsoftworks.com/"
+    ],
+    [
+     "Truffe",
+     "https://truffe.loonsoftworks.com/"
+    ]
+   ],
+   "about": [
+    "About the studio",
+    "https://loonsoftworks.com/"
+   ],
+   "fineprint": [
+    "© 2026 Loon Softworks · Ontario, Canada · <a href=\"mailto:support@loonsoftworks.com\">support@loonsoftworks.com</a>",
+    "This site uses no cookies, analytics or tracking.",
+    "Apple, the Apple logo, iPhone, iPad and Mac are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Google Play and Android are trademarks of Google LLC."
+   ],
+   "android": [
+    "On Android? Lugnut is coming to Google Play.",
+    "Email me when it’s ready",
+    "Android: Lugnut"
+   ],
+   "status": "Coming soon to the App Store and Google Play",
+   "homeTitle": "Lugnut – Car maintenance log & service reminders",
+   "privacy": "Privacy",
+   "terms": "Terms of use"
+  },
+  "fr": {
+   "skip": "Aller au contenu",
+   "language": "Langue",
+   "legalTitle": "Juridique",
+   "app": "L’app",
+   "legalLinks": [
+    [
+     "Accessibilité",
+     "https://loonsoftworks.com/fr/accessibilite/"
+    ],
+    [
+     "Mentions légales",
+     "https://loonsoftworks.com/fr/mentions-legales/"
+    ]
+   ],
+   "studioItems": [
+    [
+     "Lugnut",
+     "https://lugnut.loonsoftworks.com/fr/"
+    ],
+    [
+     "Calendar Corrector",
+     "https://calendarcorrector.loonsoftworks.com/fr/"
+    ],
+    [
+     "Truffe",
+     "https://truffe.loonsoftworks.com/fr/"
+    ]
+   ],
+   "about": [
+    "À propos du studio",
+    "https://loonsoftworks.com/fr/"
+   ],
+   "fineprint": [
+    "© 2026 Loon Softworks · Ontario, Canada · <a href=\"mailto:support@loonsoftworks.com\">support@loonsoftworks.com</a>",
+    "Ce site n’utilise ni témoins (cookies), ni outil d’analyse, ni pistage.",
+    "Apple, le logo Apple, iPhone, iPad et Mac sont des marques d’Apple Inc., déposées aux États-Unis et dans d’autres pays. App Store est une marque de service d’Apple Inc. Google Play et Android sont des marques de Google LLC."
+   ],
+   "android": [
+    "Sur Android? Lugnut arrive bientôt sur Google Play.",
+    "M’écrire quand ce sera prêt",
+    "Android : Lugnut"
+   ],
+   "status": "Bientôt sur l’App Store et Google Play",
+   "homeTitle": "Lugnut – Carnet d’entretien auto et rappels",
+   "privacy": "Confidentialité",
+   "terms": "Conditions d’utilisation"
+  },
+  "es": {
+   "skip": "Ir al contenido",
+   "language": "Idioma",
+   "legalTitle": "Legal",
+   "app": "La app",
+   "legalLinks": [
+    [
+     "Accesibilidad",
+     "https://loonsoftworks.com/accessibility/"
+    ],
+    [
+     "Aviso legal",
+     "https://loonsoftworks.com/legal/"
+    ]
+   ],
+   "studioItems": [
+    [
+     "Lugnut",
+     "https://lugnut.loonsoftworks.com/"
+    ],
+    [
+     "Calendar Corrector",
+     "https://calendarcorrector.loonsoftworks.com/"
+    ],
+    [
+     "Truffe",
+     "https://truffe.loonsoftworks.com/"
+    ]
+   ],
+   "about": [
+    "Sobre el estudio",
+    "https://loonsoftworks.com/"
+   ],
+   "fineprint": [
+    "© 2026 Loon Softworks · Ontario, Canada · <a href=\"mailto:support@loonsoftworks.com\">support@loonsoftworks.com</a>",
+    "Este sitio no usa cookies, analítica ni rastreo.",
+    "Apple, el logotipo de Apple, iPhone, iPad y Mac son marcas comerciales de Apple Inc., registradas en EE. UU. y otros países. App Store es una marca de servicio de Apple Inc. Google Play y Android son marcas comerciales de Google LLC."
+   ],
+   "android": [
+    "¿Usas Android? Lugnut llegará pronto a Google Play.",
+    "Avísame cuando esté lista",
+    "Android: Lugnut"
+   ],
+   "status": "Muy pronto en App Store y Google Play",
+   "homeTitle": "Lugnut – Bitácora de mantenimiento y recordatorios",
+   "privacy": "Privacidad",
+   "terms": "Términos de uso"
+  },
+  "de": {
+   "skip": "Zum Inhalt springen",
+   "language": "Sprache",
+   "legalTitle": "Rechtliches",
+   "app": "Die App",
+   "legalLinks": [
+    [
+     "Barrierefreiheit",
+     "https://loonsoftworks.com/accessibility/"
+    ],
+    [
+     "Impressum",
+     "https://loonsoftworks.com/legal/#impressum"
+    ]
+   ],
+   "studioItems": [
+    [
+     "Lugnut",
+     "https://lugnut.loonsoftworks.com/"
+    ],
+    [
+     "Calendar Corrector",
+     "https://calendarcorrector.loonsoftworks.com/"
+    ],
+    [
+     "Truffe",
+     "https://truffe.loonsoftworks.com/"
+    ]
+   ],
+   "about": [
+    "Über das Studio",
+    "https://loonsoftworks.com/"
+   ],
+   "fineprint": [
+    "© 2026 Loon Softworks · Ontario, Canada · <a href=\"mailto:support@loonsoftworks.com\">support@loonsoftworks.com</a>",
+    "Diese Website verwendet keine Cookies, keine Analyse und kein Tracking.",
+    "Apple, das Apple-Logo, iPhone, iPad und Mac sind Marken der Apple Inc., die in den USA und weiteren Ländern eingetragen sind. App Store ist eine Dienstleistungsmarke der Apple Inc. Google Play und Android sind Marken von Google LLC."
+   ],
+   "android": [
+    "Android? Lugnut kommt bald zu Google Play.",
+    "Benachrichtigt mich",
+    "Android: Lugnut"
+   ],
+   "status": "Bald im App Store und bei Google Play",
+   "homeTitle": "Lugnut – Digitales Scheckheft und Wartungserinnerungen",
+   "privacy": "Datenschutz",
+   "terms": "Nutzungsbedingungen"
+  }
+ }
+}

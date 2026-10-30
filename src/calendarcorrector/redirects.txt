@@ -1,0 +1,13 @@
+/support.html /support/ 301
+/privacy.html /privacy/ 301
+/terms.html /terms/ 301
+/press.html /press/ 301
+/guides/index.html /guides/ 301
+/guides/rename-calendar-event-titles.html /guides/rename-calendar-event-titles/ 301
+/guides/subscribed-calendar-stopped-updating.html /guides/subscribed-calendar-stopped-updating/ 301
+/guides/edit-subscribed-calendar-iphone.html /guides/edit-subscribed-calendar-iphone/ 301
+/guides/overnight-shifts-wrong-end-time.html /guides/overnight-shifts-wrong-end-time/ 301
+/guides/school-calendar-one-grade.html /guides/school-calendar-one-grade/ 301
+/guides/sports-schedule-arrive-early.html /guides/sports-schedule-arrive-early/ 301
+/guides/hide-holidays-other-provinces.html /guides/hide-holidays-other-provinces/ 301
+/guides/all-day-events-show-busy.html /guides/all-day-events-show-busy/ 301

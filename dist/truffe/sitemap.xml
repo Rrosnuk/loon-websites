@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://truffe.loonsoftworks.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/privacy/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/fr/confidentialite/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/privacy/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/support/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/support/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/aide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/support/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/fr/aide/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/support/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/aide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/support/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/conditions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/terms/"/>
+  </url>
+  <url><loc>https://truffe.loonsoftworks.com/fr/conditions/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://truffe.loonsoftworks.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://truffe.loonsoftworks.com/fr/conditions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://truffe.loonsoftworks.com/terms/"/>
+  </url>
+</urlset>
