@@ -283,7 +283,7 @@ def build_lugnut_overlay():
     (out / "site.css").write_text(css)
     (out / "site.js").write_text(ANDROID_JS)
     # Lugnut pages keep a small inline script (copy button), so allow inline but block outside scripts such as analytics beacons.
-    (out / "_headers").write_text(HEADERS.replace("script-src 'self'", "script-src 'self' 'unsafe-inline'"))
+    (out / "_headers").write_text(HEADERS.replace("script-src 'self'", "script-src 'self' 'unsafe-inline'").replace("style-src 'self'", "style-src 'self' 'unsafe-inline'"))
     shutil.copy(SRC / "shared" / "lugnut-icon.svg", out / "lugnut-icon.svg")
     for a in APPS.values():
         shutil.copy(SRC / "shared" / a["icon"], out / a["icon"])
