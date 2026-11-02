@@ -20,8 +20,12 @@ python3 build.py
 ```
 
 ## Deploy
-Today: from the signed-in Cloudflare dashboard, on each project's *Create deployment → Upload assets* page, load `tools/deploy.js` and run `LOON.stage('<project>')`, then press **Save and deploy**.
-Later (recommended): `npx wrangler pages deploy dist/<project> --project-name <project>` with an API token, from a `.command` script or GitHub Actions.
+**Live state (2 November 2026), read before deploying:**
+- `calendarcorrector`: built from this repo, in all 44 App Store languages (translations in `src/calendarcorrector/i18n/<code>/`, English source text from `python3 tools/extract_i18n.py calendarcorrector`). Deploy `dist/calendarcorrector` plus the App Store screenshots in `src/remote-assets.json`.
+- `loonsoftworks`: the live home page is the 44-language redesign (built outside this repo, with the studio privacy, accessibility and legal pages from `dist/loonsoftworks` added). **Don't deploy `dist/loonsoftworks` on its own**: it would replace the 44-language home with the English/French one.
+- `lugnutapp`: the live Lugnut site is the 44-language build with a searchable language menu and a Loon Softworks footer column. **Don't run `LOON.stage('lugnutapp')`**: the re-skin only knows en/fr/es/de and would break the language menu.
+
+Dashboard uploads (`LOON.stage`) stopped working on 2 November 2026 (Cloudflare answers "Authorization failed" when checking files). What works: Wrangler from the Mac, `npx --yes wrangler@4 pages deploy <folder> --project-name <project> --branch main` (sign in once with `npx --yes wrangler@4 login`).
 
 ## Rules
 - No third-party requests, cookies or analytics (keeps "no cookie banner" true).
