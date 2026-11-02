@@ -7,6 +7,7 @@ Pages live in src/<site>/pages/<id>.<lang>.html with a small front-matter block.
 Shared chrome (header, footer, head tags) is generated here so every site matches."""
 import json, re, shutil, html, hashlib
 from pathlib import Path
+from langs import LANG_INFO, LANGS, SEARCH, PICKER_JS
 
 ROOT = Path(__file__).parent
 SRC, DIST = ROOT / "src", ROOT / "dist"
@@ -88,12 +89,83 @@ SITES = {
     "calendarcorrector": dict(project="calendarcorrector", domain=APPS["calendar"]["url"], key="calendar", name="Calendar Corrector", langs=["en", "fr"],
                    icon="/favicon.svg", theme="#1d4ed8", og="/img/og.png",
                    nav={"en": [("home", "Features", "/#features"), ("pricing", "Pricing", "/#pricing"), ("guides", "Guides", "/guides/"), ("support", "Support", "/support/")],
-                        "fr": [("home", "Fonctions", "/fr/#features"), ("pricing", "Prix", "/fr/#pricing"), ("guides", "Guides (EN)", "/guides/"), ("support", "Assistance", "/fr/assistance/")]},
+                        "fr": [("home", "Fonctions", "/fr/#features"), ("pricing", "Prix", "/fr/#pricing"), ("guides", "Guides", "/fr/guides/"), ("support", "Assistance", "/fr/assistance/")]},
                    footer_app={"en": [("Features", "/#features"), ("Guides", "/guides/"), ("Support", "/support/"), ("Press kit", "/press/"), ("Privacy policy", "/privacy/"), ("Terms of use", "/terms/")],
-                               "fr": [("Fonctions", "/fr/#features"), ("Assistance", "/fr/assistance/"), ("Dossier de presse (EN)", "/press/"), ("Confidentialité", "/fr/confidentialite/"), ("Conditions d’utilisation", "/fr/conditions/")]}),
+                               "fr": [("Fonctions", "/fr/#features"), ("Guides", "/fr/guides/"), ("Assistance", "/fr/assistance/"), ("Dossier de presse", "/fr/press/"), ("Confidentialité", "/fr/confidentialite/"), ("Conditions d’utilisation", "/fr/conditions/")]}),
 }
 
 def esc(s): return html.escape(s, quote=True)
+
+# ---- Every App Store language ----
+# A site's pages in other languages come from src/<site>/i18n/<code>/pages/<id>.json (title, description, body), written
+# at /<code>/<English path>. Interface strings for those languages come from src/<site>/i18n/<code>/ui.json.
+def lp(lang):
+    """Path prefix of a language: "" for English, "/pt-br" for Portuguese (Brazil)."""
+    return "" if lang == "en" else "/" + LANG_INFO[lang]["url"]
+
+def _load_languages():
+    for site in SITES:
+        base = SRC / site / "i18n"
+        if not base.exists():
+            continue
+        src_ui = base / "source" / "ui.json"
+        if src_ui.exists():
+            for k, v in json.loads(src_ui.read_text()).items():
+                T["en"].setdefault(k, v)
+        for d in sorted(base.iterdir()):
+            if d.name in LANG_INFO and (d / "ui.json").exists():
+                T.setdefault(d.name, {})
+                for k, v in json.loads((d / "ui.json").read_text()).items():
+                    T[d.name].setdefault(k, v)
+    for c in T:
+        for k, v in T["en"].items():
+            T[c].setdefault(k, v)
+        if "updated" in T[c]:
+            UPDATED.setdefault(c, T[c]["updated"])
+    for c, i in LANG_INFO.items():
+        LANG_NAMES.setdefault(c, i["name"]); HTML_LANG.setdefault(c, i["tag"]); OG_LOCALE.setdefault(c, i["og"])
+    # Which languages each site has: hand-written pages plus translations.
+    for site, s in SITES.items():
+        have = {p.name[:-5].rsplit(".", 1)[1] for p in (SRC / site / "pages").glob("*.html")}
+        base = SRC / site / "i18n"
+        if base.exists():
+            have |= {d.name for d in base.iterdir() if d.name in LANG_INFO and (d / "pages").exists() and any((d / "pages").iterdir())}
+        s["langs"] = [c for c in LANGS if c in have]
+_load_languages()
+LEGAL_NOTE = json.loads((SRC / "shared" / "legal-note.json").read_text())   # "this is a translation; English applies"
+LEGAL_IDS = {"privacy", "terms"}
+ADDRESS = "181 Gerrard St E, C4, Toronto, ON M5A 2E5"
+
+def auto_nav(site, lang):
+    t, p = T[lang], lp(lang)
+    if site == "calendarcorrector":
+        return [("home", t["features"], p + "/#features"), ("pricing", t["pricing"], p + "/#pricing"),
+                ("guides", t["guides"], p + "/guides/"), ("support", t["support"], p + "/support/")]
+    return SITES[site]["nav"]["en"]
+
+def auto_footer(site, lang):
+    t, p = T[lang], lp(lang)
+    if site == "calendarcorrector":
+        return [(t["features"], p + "/#features"), (t["guides"], p + "/guides/"), (t["support"], p + "/support/"),
+                (t["press"], p + "/press/"), (t["privacy_policy"], p + "/privacy/"), (t["terms"], p + "/terms/")]
+    return None
+
+def app_home(key, lang):
+    langs = LANGS if key == "lugnut" else SITES["truffe" if key == "truffe" else "calendarcorrector"]["langs"]
+    return APPS[key]["url"] + (lp(lang) + "/" if lang in langs else "/")
+
+def lang_picker(s, lang, alts, label):
+    """Searchable language menu for sites in many languages (type to narrow the list)."""
+    items = ""
+    for c in s["langs"]:
+        i = LANG_INFO[c]
+        cur = ' aria-current="true"' if c == lang else ""
+        items += (f'<li data-k="{esc(i["name"] + " " + i["en_name"] + " " + c)}"><a href="{alts.get(c, lp(c) + "/")}" '
+                  f'hreflang="{i["tag"]}" lang="{i["tag"]}"{cur}>{esc(i["name"])}</a></li>')
+    return (f'<details class="lang langpick"><summary aria-label="{esc(label)}: {esc(LANG_NAMES[lang])}">{GLOBE}<span>{esc(LANG_NAMES[lang])}</span></summary>'
+            f'<div class="langpanel"><input type="search" placeholder="{esc(SEARCH[lang])}" aria-label="{esc(SEARCH[lang])}" autocomplete="off" spellcheck="false">'
+            f'<ul>{items}</ul></div></details>')
+PICKER_SCRIPT = PICKER_JS.replace("<script>", "").replace("</script>", "").strip() + "\n"
 
 def parse_page(p: Path):
     raw = p.read_text()
@@ -109,24 +181,27 @@ def parse_page(p: Path):
 def header(site, page, alts):
     lang, s = page["lang"], SITES[page["site"]]
     t = T[lang]
-    home = "/" if lang == "en" else f"/{lang}/"
+    home = lp(lang) + "/"
     if s["key"]:
         brand = f'<a class="brand" href="{home}"><img src="{s["icon"]}" alt="" width="32" height="32"><span>{esc(s["name"])}</span></a>'
     else:
         brand = f'<a class="brand" href="{home}"><img src="/favicon.svg" alt="" width="32" height="32"><span>Loon Softworks</span></a>'
     items = "".join(
         f'<li><a href="{h}"{" aria-current=\"page\"" if page.get("nav") == k else ""}>{esc(lbl)}</a></li>'
-        for k, lbl, h in s["nav"][lang])
-    langs = ""
-    for l in s["langs"]:
-        href = alts.get(l, "/" if l == "en" else f"/{l}/")
-        cur = ' aria-current="true"' if l == lang else ""
-        langs += f'<li><a href="{href}" hreflang="{l}" lang="{HTML_LANG[l]}"{cur}>{LANG_NAMES[l]}</a></li>'
-    lang_menu = (f'<details class="lang"><summary aria-label="{t["language"]}: {LANG_NAMES[lang]}">{GLOBE}<span>{LANG_NAMES[lang]}</span></summary>'
-                 f'<ul>{langs}</ul></details>')
+        for k, lbl, h in (s["nav"].get(lang) or auto_nav(page["site"], lang)))
+    if len(s["langs"]) > 2:
+        lang_menu = lang_picker(s, lang, alts, t["language"])
+    else:
+        langs = ""
+        for l in s["langs"]:
+            href = alts.get(l, lp(l) + "/")
+            cur = ' aria-current="true"' if l == lang else ""
+            langs += f'<li><a href="{href}" hreflang="{l}" lang="{HTML_LANG[l]}"{cur}>{LANG_NAMES[l]}</a></li>'
+        lang_menu = (f'<details class="lang"><summary aria-label="{t["language"]}: {LANG_NAMES[lang]}">{GLOBE}<span>{LANG_NAMES[lang]}</span></summary>'
+                     f'<ul>{langs}</ul></details>')
     return (f'<a class="skip" href="#main">{t["skip"]}</a>\n'
             f'<header class="site-header"><div class="wrap bar">{brand}'
-            f'<nav class="primary" aria-label="{"Main" if lang=="en" else "Principal"}"><ul>{items}</ul></nav>{lang_menu}</div></header>')
+            f'<nav class="primary" aria-label="{esc(t.get("main", "Main")) if lang != "fr" else "Principal"}"><ul>{items}</ul></nav>{lang_menu}</div></header>')
 
 def android_note(site, lang):
     s = SITES[site]
@@ -148,21 +223,22 @@ def footer_html(lang, app_col, studio_self, alts, langs, app_title=None):
     else:
         legal = [(l, h) for l, h in legal if h]
     cols.append(f'<div><h2>{t["legal"]}</h2><ul>' + "".join(f'<li><a href="{h}">{esc(l)}</a></li>' for l, h in legal) + "</ul></div>")
-    studio_items = [(a["name"], a["url"] + ("/" if lang == "en" else f"/{lang}/" if lang in ("fr",) else "/")) for a in APPS.values()]
+    studio_items = [(a["name"], app_home(k, lang)) for k, a in APPS.items()]
     about = studio_link(lang, "about")
     if studio_self: about = about.replace(STUDIO, "")
     cols.append(f'<div><h2><a class="studio-mark" href="{about}">Loon Softworks</a></h2><ul>' +
                 "".join(f'<li><a href="{h}">{esc(n)}</a></li>' for n, h in studio_items) +
                 f'<li><a href="{about}">{esc(t["about"])}</a></li></ul></div>')
-    ls = "".join(f'<li><a href="{alts.get(l, "/" if l=="en" else f"/{l}/")}" hreflang="{l}" lang="{HTML_LANG[l]}"{" aria-current=\"true\"" if l==lang else ""}>{LANG_NAMES[l]}</a></li>' for l in langs)
-    cols.append(f'<div><h2>{t["language"]}</h2><ul>{ls}</ul></div>')
+    if len(langs) <= 4:   # many languages: the header's searchable menu is enough
+        ls = "".join(f'<li><a href="{alts.get(l, lp(l) + "/")}" hreflang="{l}" lang="{HTML_LANG[l]}"{" aria-current=\"true\"" if l==lang else ""}>{LANG_NAMES[l]}</a></li>' for l in langs)
+        cols.append(f'<div><h2>{t["language"]}</h2><ul>{ls}</ul></div>')
     return (f'<footer class="site-footer"><div class="wrap cols">{"".join(cols)}</div>'
             f'<div class="wrap fineprint"><p>© {YEAR} Loon Softworks · Ontario, Canada · <a href="mailto:{EMAIL}">{EMAIL}</a></p>'
             f'<p>{esc(t["nocookies"])}</p><p>{esc(t["tm"])}</p></div></footer>')
 
 def footer(page, alts):
     s = SITES[page["site"]]; lang = page["lang"]
-    return footer_html(lang, s.get("footer_app", {}).get(lang), s["key"] is None, alts, s["langs"], app_title=s["name"] if s["key"] else None)
+    return footer_html(lang, s.get("footer_app", {}).get(lang) or auto_footer(page["site"], lang), s["key"] is None, alts, s["langs"], app_title=s["name"] if s["key"] else None)
 
 def head(page, alts):
     s = SITES[page["site"]]; lang = page["lang"]
@@ -172,15 +248,15 @@ def head(page, alts):
     if page["path"] != "/404.html":
         links += f'<link rel="canonical" href="{url}">\n'
         for l, p in alts.items():
-            links += f'<link rel="alternate" hreflang="{l}" href="{s["domain"]}{p}">\n'
+            links += f'<link rel="alternate" hreflang="{LANG_INFO[l]["tag"]}" href="{s["domain"]}{p}">\n'
         if len(alts) > 1 and "en" in alts:
             links += f'<link rel="alternate" hreflang="x-default" href="{s["domain"]}{alts["en"]}">\n'
-    og_img = s["domain"] + (s["og"][lang] if isinstance(s["og"], dict) else s["og"])
+    og_img = s["domain"] + (s["og"].get(lang, s["og"]["en"]) if isinstance(s["og"], dict) else s["og"])
     fav_href, fav_type = s.get("favicon", ("/favicon.svg", "image/svg+xml"))
     ld = page.get("jsonld", "")
     robots = '<meta name="robots" content="noindex">\n' if page["path"] == "/404.html" else ""
     return f"""<!doctype html>
-<html lang="{HTML_LANG[lang]}" data-site="{ {'studio':'studio','truffe':'truffe','calendarcorrector':'calendar'}[page['site']] }">
+<html lang="{HTML_LANG[lang]}"{' dir="rtl"' if LANG_INFO[lang].get("rtl") else ""} data-site="{ {'studio':'studio','truffe':'truffe','calendarcorrector':'calendar'}[page['site']] }">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -210,9 +286,54 @@ ANDROID_JS = "(function(){try{if(/Android/i.test(navigator.userAgent)){var n=doc
 def jsonld_app(site, lang, desc, os_, category, offers):
     s = SITES[site]
     d = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": s["name"], "description": desc,
-         "applicationCategory": category, "operatingSystem": os_, "url": s["domain"] + "/", "inLanguage": s["langs"],
+         "applicationCategory": category, "operatingSystem": os_, "url": s["domain"] + "/", "inLanguage": [LANG_INFO[l]["tag"] for l in s["langs"]],
          "offers": offers, "publisher": {"@type": "Organization", "name": "Loon Softworks", "url": STUDIO + "/", "email": EMAIL}}
     return f'<script type="application/ld+json">{json.dumps(d, ensure_ascii=False)}</script>\n'
+
+def translated_pages(site, pages):
+    """Pages in other languages from src/<site>/i18n/<code>/pages/<id>.json, at /<code>/<English path>."""
+    base = SRC / site / "i18n"
+    if not base.exists():
+        return []
+    en = {p["id"]: p for p in pages if p["lang"] == "en"}
+    have = {(p["id"], p["lang"]) for p in pages}
+    out = []
+    for d in sorted(base.iterdir()):
+        code = d.name
+        if code not in LANG_INFO or not (d / "pages").exists():
+            continue
+        for f in sorted((d / "pages").glob("*.json")):
+            pid = f.stem
+            if (pid, code) in have or pid not in en:
+                continue
+            j = json.loads(f.read_text())
+            pg = {k: v for k, v in en[pid].items() if k != "ogtitle"}
+            pg.update(lang=code, title=j["title"], description=j.get("description", ""), body=j["body"], path=lp(code) + en[pid]["path"])
+            if j.get("ogtitle"):
+                pg["ogtitle"] = j["ogtitle"]
+            if pid in LEGAL_IDS and code in LEGAL_NOTE:
+                n = LEGAL_NOTE[code]
+                note = (f'<p class="translated-note">{esc(n["translated_legal"])} '
+                        f'<a href="{en[pid]["path"]}" hreflang="en" lang="en">{esc(n["english_link"])}</a></p>')
+                pg["body"] = re.sub(r"(</h1>)", lambda m: m.group(1) + note, pg["body"], count=1)
+            out.append(pg)
+    return out
+
+def localize_links(body, lang, by_id):
+    """Links to the site's own English pages go to the same page in this language when it exists."""
+    en_paths = {alts["en"]: alts for alts in by_id.values() if "en" in alts}
+    def fix(m):
+        tag = m.group(0)
+        if "hreflang=" in tag:
+            return tag
+        def sub(h):
+            path, _, frag = h.group(1).partition("#")
+            alts = en_paths.get(path)
+            if alts and lang in alts:
+                return f'href="{alts[lang]}{"#" + frag if frag else ""}"'
+            return h.group(0)
+        return re.sub(r'href="(/[^"]*)"', sub, tag, count=1)
+    return re.sub(r"<a\b[^>]*>", fix, body)
 
 def build_site(site):
     s = SITES[site]
@@ -220,11 +341,16 @@ def build_site(site):
     if out.exists(): shutil.rmtree(out)
     out.mkdir(parents=True)
     pages = [dict(parse_page(p), site=site) for p in sorted((SRC / site / "pages").glob("*.html"))]
+    pages += translated_pages(site, pages)
     by_id = {}
     for p in pages: by_id.setdefault(p["id"], {})[p["lang"]] = p["path"]
     for p in pages:
         alts = {} if p["path"] == "/404.html" else by_id[p["id"]]
         body = p["body"].replace("{{UPDATED}}", UPDATED[p["lang"]]).replace("{{EMAIL}}", EMAIL)
+        if p["lang"] != "en":
+            body = localize_links(body, p["lang"], by_id)
+        if LANG_INFO[p["lang"]].get("rtl"):   # keep the street address in left-to-right order
+            body = body.replace(ADDRESS, f'<span dir="ltr">{ADDRESS}</span>')
         doc = (head(p, alts) + android_note(site, p["lang"]) + "\n" + header(site, p, alts) +
                f'\n<main id="main">\n{body}\n</main>\n' + footer(p, alts) +
                ('\n<script src="/site.js" defer></script>' if s["key"] else "") + "\n</body>\n</html>\n")
@@ -238,7 +364,7 @@ def build_site(site):
             if f.is_file():
                 d = out / f.relative_to(st); d.parent.mkdir(parents=True, exist_ok=True); shutil.copy(f, d)
     shutil.copy(SRC / "shared" / "loon.css", out / "loon.css")
-    if s["key"]: (out / "site.js").write_text(ANDROID_JS)
+    if s["key"]: (out / "site.js").write_text(ANDROID_JS + (PICKER_SCRIPT if len(s["langs"]) > 2 else ""))
     (out / "img").mkdir(exist_ok=True)
     for a in APPS.values():
         shutil.copy(SRC / "shared" / a["icon"], out / "img" / a["icon"])
@@ -250,7 +376,7 @@ def build_site(site):
             sm.append(f"  <url><loc>{s['domain']}{path}</loc>")
             if len(alts) > 1:
                 for l2, p2 in alts.items():
-                    sm.append(f'    <xhtml:link rel="alternate" hreflang="{l2}" href="{s["domain"]}{p2}"/>')
+                    sm.append(f'    <xhtml:link rel="alternate" hreflang="{LANG_INFO[l2]["tag"]}" href="{s["domain"]}{p2}"/>')
                 sm.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{s["domain"]}{alts.get("en", path)}"/>')
             sm.append("  </url>")
     sm.append("</urlset>")

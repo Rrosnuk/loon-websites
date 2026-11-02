@@ -1,0 +1,174 @@
+{
+ "ar": {
+  "translated_legal": "هذه ترجمة. إذا اختلفت عن النسخة الإنجليزية، فالنسخة الإنجليزية هي المعتمدة.",
+  "english_link": "اقرأ النسخة الإنجليزية"
+ },
+ "bn": {
+  "translated_legal": "এটি একটি অনুবাদ। ইংরেজি সংস্করণের সঙ্গে পার্থক্য থাকলে ইংরেজি সংস্করণই প্রযোজ্য।",
+  "english_link": "ইংরেজি সংস্করণ পড়ুন"
+ },
+ "ca": {
+  "translated_legal": "Això és una traducció. Si difereix de la versió anglesa, preval la versió anglesa.",
+  "english_link": "Llegeix la versió anglesa"
+ },
+ "cs": {
+  "translated_legal": "Toto je překlad. Pokud se liší od anglické verze, platí anglická verze.",
+  "english_link": "Přečíst anglickou verzi"
+ },
+ "da": {
+  "translated_legal": "Dette er en oversættelse. Hvis den afviger fra den engelske version, gælder den engelske version.",
+  "english_link": "Læs den engelske version"
+ },
+ "de": {
+  "translated_legal": "Dies ist eine Übersetzung. Weicht sie von der englischen Fassung ab, gilt die englische Fassung.",
+  "english_link": "Englische Fassung lesen"
+ },
+ "el": {
+  "translated_legal": "Αυτό είναι μετάφραση. Αν διαφέρει από την αγγλική έκδοση, ισχύει η αγγλική έκδοση.",
+  "english_link": "Διαβάστε την αγγλική έκδοση"
+ },
+ "es": {
+  "translated_legal": "Esta es una traducción. Si difiere de la versión en inglés, prevalece la versión en inglés.",
+  "english_link": "Leer la versión en inglés"
+ },
+ "fi": {
+  "translated_legal": "Tämä on käännös. Jos se poikkeaa englanninkielisestä versiosta, englanninkielinen versio on ratkaiseva.",
+  "english_link": "Lue englanninkielinen versio"
+ },
+ "gu": {
+  "translated_legal": "આ અનુવાદ છે. જો તે અંગ્રેજી સંસ્કરણથી અલગ હોય, તો અંગ્રેજી સંસ્કરણ લાગુ પડે છે.",
+  "english_link": "અંગ્રેજી સંસ્કરણ વાંચો"
+ },
+ "he": {
+  "translated_legal": "זהו תרגום. אם יש הבדל בינו לבין הגרסה האנגלית, הגרסה האנגלית קובעת.",
+  "english_link": "לקריאת הגרסה האנגלית"
+ },
+ "hi": {
+  "translated_legal": "यह एक अनुवाद है। अगर यह अंग्रेज़ी वर्ज़न से अलग है, तो अंग्रेज़ी वर्ज़न लागू होगा।",
+  "english_link": "अंग्रेज़ी वर्ज़न पढ़ें"
+ },
+ "hr": {
+  "translated_legal": "Ovo je prijevod. Ako se razlikuje od engleske verzije, mjerodavna je engleska verzija.",
+  "english_link": "Pročitajte englesku verziju"
+ },
+ "hu": {
+  "translated_legal": "Ez egy fordítás. Ha eltér az angol változattól, az angol változat az irányadó.",
+  "english_link": "Az angol változat elolvasása"
+ },
+ "id": {
+  "translated_legal": "Ini adalah terjemahan. Jika terdapat perbedaan dengan versi bahasa Inggris, versi bahasa Inggris yang berlaku.",
+  "english_link": "Baca versi bahasa Inggris"
+ },
+ "it": {
+  "translated_legal": "Questa è una traduzione. In caso di differenze rispetto alla versione inglese, prevale la versione inglese.",
+  "english_link": "Leggi la versione inglese"
+ },
+ "ja": {
+  "translated_legal": "これは翻訳です。英語版と内容が異なる場合は、英語版が優先されます。",
+  "english_link": "英語版を読む"
+ },
+ "kn": {
+  "translated_legal": "ಇದು ಅನುವಾದ. ಇದು ಇಂಗ್ಲಿಷ್ ಆವೃತ್ತಿಗಿಂತ ಭಿನ್ನವಾಗಿದ್ದರೆ, ಇಂಗ್ಲಿಷ್ ಆವೃತ್ತಿಯೇ ಅನ್ವಯಿಸುತ್ತದೆ.",
+  "english_link": "ಇಂಗ್ಲಿಷ್ ಆವೃತ್ತಿಯನ್ನು ಓದಿ"
+ },
+ "ko": {
+  "translated_legal": "이 문서는 번역본입니다. 영어 원문과 내용이 다를 경우 영어 원문이 우선합니다.",
+  "english_link": "영어 원문 보기"
+ },
+ "ml": {
+  "translated_legal": "ഇതൊരു വിവർത്തനമാണ്. ഇംഗ്ലീഷ് പതിപ്പിൽ നിന്ന് വ്യത്യാസമുണ്ടെങ്കിൽ, ഇംഗ്ലീഷ് പതിപ്പാണ് ബാധകം.",
+  "english_link": "ഇംഗ്ലീഷ് പതിപ്പ് വായിക്കുക"
+ },
+ "mr": {
+  "translated_legal": "हा अनुवाद आहे. तो इंग्रजी आवृत्तीपेक्षा वेगळा असल्यास इंग्रजी आवृत्ती लागू होईल.",
+  "english_link": "इंग्रजी आवृत्ती वाचा"
+ },
+ "ms": {
+  "translated_legal": "Ini ialah terjemahan. Jika terdapat perbezaan dengan versi bahasa Inggeris, versi bahasa Inggeris akan terpakai.",
+  "english_link": "Baca versi bahasa Inggeris"
+ },
+ "nb": {
+  "translated_legal": "Dette er en oversettelse. Hvis den avviker fra den engelske versjonen, gjelder den engelske versjonen.",
+  "english_link": "Les den engelske versjonen"
+ },
+ "nl": {
+  "translated_legal": "Dit is een vertaling. Als deze afwijkt van de Engelse versie, geldt de Engelse versie.",
+  "english_link": "Lees de Engelse versie"
+ },
+ "or": {
+  "translated_legal": "ଏହା ଏକ ଅନୁବାଦ। ଯଦି ଏହା ଇଂରାଜୀ ସଂସ୍କରଣଠାରୁ ଭିନ୍ନ ହୁଏ, ତେବେ ଇଂରାଜୀ ସଂସ୍କରଣ ଲାଗୁ ହେବ।",
+  "english_link": "ଇଂରାଜୀ ସଂସ୍କରଣ ପଢ଼ନ୍ତୁ"
+ },
+ "pa": {
+  "translated_legal": "ਇਹ ਅਨੁਵਾਦ ਹੈ। ਜੇ ਇਹ ਅੰਗਰੇਜ਼ੀ ਸੰਸਕਰਣ ਤੋਂ ਵੱਖਰਾ ਹੈ, ਤਾਂ ਅੰਗਰੇਜ਼ੀ ਸੰਸਕਰਣ ਲਾਗੂ ਹੁੰਦਾ ਹੈ।",
+  "english_link": "ਅੰਗਰੇਜ਼ੀ ਸੰਸਕਰਣ ਪੜ੍ਹੋ"
+ },
+ "pl": {
+  "translated_legal": "To jest tłumaczenie. W razie rozbieżności z wersją angielską obowiązuje wersja angielska.",
+  "english_link": "Przeczytaj wersję angielską"
+ },
+ "pt-BR": {
+  "translated_legal": "Esta é uma tradução. Se houver diferença em relação à versão em inglês, vale a versão em inglês.",
+  "english_link": "Ler a versão em inglês"
+ },
+ "pt-PT": {
+  "translated_legal": "Esta é uma tradução. Em caso de divergência com a versão em inglês, prevalece a versão em inglês.",
+  "english_link": "Ler a versão em inglês"
+ },
+ "ro": {
+  "translated_legal": "Aceasta este o traducere. Dacă diferă de versiunea în engleză, se aplică versiunea în engleză.",
+  "english_link": "Citește versiunea în engleză"
+ },
+ "ru": {
+  "translated_legal": "Это перевод. Если он расходится с английской версией, действует английская версия.",
+  "english_link": "Читать английскую версию"
+ },
+ "sk": {
+  "translated_legal": "Toto je preklad. Ak sa líši od anglickej verzie, platí anglická verzia.",
+  "english_link": "Prečítať anglickú verziu"
+ },
+ "sl": {
+  "translated_legal": "To je prevod. Če se razlikuje od angleške različice, velja angleška različica.",
+  "english_link": "Preberite angleško različico"
+ },
+ "sv": {
+  "translated_legal": "Det här är en översättning. Om den skiljer sig från den engelska versionen gäller den engelska versionen.",
+  "english_link": "Läs den engelska versionen"
+ },
+ "ta": {
+  "translated_legal": "இது ஒரு மொழிபெயர்ப்பு. இது ஆங்கிலப் பதிப்பிலிருந்து வேறுபட்டால், ஆங்கிலப் பதிப்பே செல்லுபடியாகும்.",
+  "english_link": "ஆங்கிலப் பதிப்பைப் படிக்கவும்"
+ },
+ "te": {
+  "translated_legal": "ఇది అనువాదం. ఇది ఇంగ్లీష్ వెర్షన్‌కు భిన్నంగా ఉంటే, ఇంగ్లీష్ వెర్షనే వర్తిస్తుంది.",
+  "english_link": "ఇంగ్లీష్ వెర్షన్ చదవండి"
+ },
+ "th": {
+  "translated_legal": "นี่คือฉบับแปล หากมีข้อความแตกต่างจากฉบับภาษาอังกฤษ ให้ถือตามฉบับภาษาอังกฤษ",
+  "english_link": "อ่านฉบับภาษาอังกฤษ"
+ },
+ "tr": {
+  "translated_legal": "Bu bir çeviridir. İngilizce sürümle farklılık olması durumunda İngilizce sürüm geçerlidir.",
+  "english_link": "İngilizce sürümü okuyun"
+ },
+ "uk": {
+  "translated_legal": "Це переклад. Якщо він відрізняється від англійської версії, чинною є англійська версія.",
+  "english_link": "Читати англійську версію"
+ },
+ "ur": {
+  "translated_legal": "یہ ایک ترجمہ ہے۔ اگر یہ انگریزی ورژن سے مختلف ہو تو انگریزی ورژن نافذ ہوگا۔",
+  "english_link": "انگریزی ورژن پڑھیں"
+ },
+ "vi": {
+  "translated_legal": "Đây là bản dịch. Nếu có khác biệt so với bản tiếng Anh, bản tiếng Anh được áp dụng.",
+  "english_link": "Đọc bản tiếng Anh"
+ },
+ "zh-Hans": {
+  "translated_legal": "本文为译文。如与英文版本有出入，以英文版本为准。",
+  "english_link": "阅读英文版本"
+ },
+ "zh-Hant": {
+  "translated_legal": "本文為譯文。如與英文版本有出入，以英文版本為準。",
+  "english_link": "閱讀英文版本"
+ }
+}
