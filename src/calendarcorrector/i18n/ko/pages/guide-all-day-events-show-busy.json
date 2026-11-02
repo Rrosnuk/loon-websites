@@ -1,0 +1,5 @@
+{
+ "title": "종일 이벤트를 한가함 대신 바쁨으로 표시하기",
+ "description": "구독 캘린더의 종일 이벤트는 한가한 시간으로 간주되어, 쉬는 날에 다른 사람이 일정을 잡을 수 있습니다. 자동으로 바쁨으로 표시하십시오.",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">가이드</a></p>\n<div class=\"page-head\"><h1>종일 이벤트를 한가함 대신 바쁨으로 표시하기</h1>\n<p class=\"lede\">동료가 내 휴무일에 회의를 잡았습니다. 종일 이벤트는 한가한 시간으로 간주되기 때문에 캘린더에는 내가 시간이 있는 것으로 나와 있었습니다.</p></div>\n<div class=\"prose\">\n<h2>이런 일이 생기는 이유</h2>\n<p>캘린더 앱은 기본적으로 종일 이벤트를 <strong>한가함</strong>으로 처리합니다. 그래서 구독 캘린더의 공휴일, 재량 휴업일, 휴가가 있어도 내 시간이 막히지 않습니다. 예약 도구나 내 일정을 확인하는 동료에게는 그날이 비어 있는 것으로 보입니다.</p>\n<h2>모든 이벤트를 한 번에 바로잡기</h2>\n<ol>\n<li>캘린더를 Calendar Corrector에 추가하십시오.</li>\n<li>앱이 이를 알아차리고 <em>“종일 이벤트 26개가 한가함으로 표시됩니다. 바쁨으로 표시하겠습니까?”</em>라고 묻습니다. <strong>수정</strong>을 탭하십시오.</li>\n</ol>\n<p>골라서 적용하려면 이벤트 하나를 열어 <strong>표시 방법: 바쁨</strong>으로 설정한 다음, ‘재량 휴업일’이나 ‘휴가’처럼 같은 단어가 들어간 모든 이벤트에 적용하십시오.</p>\n<div class=\"callout\"><p>iPhone, iPad, Mac에서는 <strong>Calendar Corrector</strong>가 이 작업을 대신해 줍니다. 곧 App Store에 출시되며, 첫 번째 캘린더는 무료입니다. <a href=\"/\">더 알아보기</a></p></div>\n</div>\n</div>\n"
+}
