@@ -1,0 +1,5 @@
+{
+ "title": "更改订阅日历中的事件标题",
+ "description": "把“SVR-2 PM FOH”这类难懂的标题改成一看就懂的文字，即使日历是只读的，以后的每个事件也都会保留这项更改。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>更改订阅日历中的事件标题</h1>\n<p class=\"lede\">你的日历源使用代码、冗长的前缀，或者每个事件都带着同一个名字。你想要一眼就能看懂的标题。</p></div>\n<div class=\"prose\">\n<h2>你可以更改什么</h2>\n<ul>\n<li><strong>移除重复的文字</strong>，例如每个事件里都有的你自己的名字或机构名称。</li>\n<li><strong>重新排列标题的各个部分</strong>。“Alex Morgan · 调酒师 · BD”可以变成“Bistro · 调酒师 17:00–23:30”。</li>\n<li><strong>替换难懂的标题</strong>，改成你自己的文字，所有带有该标题的事件都会一起更改。</li>\n<li><strong>在标题中加入开始和结束时间</strong>或星期几，在月视图和手表上查看时尤其方便。</li>\n</ul>\n<h2>操作方法</h2>\n<ol>\n<li>把日历添加到 Calendar Corrector，然后轻点一个事件。</li>\n<li>用显示的各个部分组成新标题，或输入你自己的文字。</li>\n<li>存储，然后选择是仅应用于此事件、所有包含相同字词的事件，还是整个日历。</li>\n</ol>\n<p>修正会自动应用于以后的事件。如果组织者改变了措辞，App 会告诉你哪些事件不再匹配。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成这些操作。它即将登陆 App Store，第一个日历免费。<a href=\"/\">进一步了解</a></p></div>\n</div>\n</div>\n"
+}

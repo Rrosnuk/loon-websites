@@ -1,0 +1,5 @@
+{
+ "title": "让全天事件显示为忙碌而不是空闲",
+ "description": "订阅日历中的全天事件会被算作空闲时间，别人可能会在你休息的日子给你安排会议。自动将它们标记为忙碌。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>让全天事件显示为忙碌而不是空闲</h1>\n<p class=\"lede\">同事在你休息的那天给你安排了会议。你的日历显示你有空，因为全天事件会被算作空闲。</p></div>\n<div class=\"prose\">\n<h2>为什么会这样</h2>\n<p>日历 App 默认把全天事件视为<strong>空闲</strong>，所以订阅日历中的节假日、教师专业发展日或假期都不会占用你的时间。预约工具和查看你是否有空的同事看到的都是空闲的一天。</p>\n<h2>一次修正所有事件</h2>\n<ol>\n<li>把日历添加到 Calendar Corrector。</li>\n<li>它会发现这一情况并询问：<em>“26 个全天事件让你显示为空闲。要标记为忙碌吗？”</em>轻点<strong>修正</strong>。</li>\n</ol>\n<p>如果想有所选择，可以打开一个事件，设置<strong>显示为：忙碌</strong>，然后把它应用于所有包含相同字词的事件，例如所有“教师专业发展日”或“休假”。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成这些操作。它即将登陆 App Store，第一个日历免费。<a href=\"/\">进一步了解</a></p></div>\n</div>\n</div>\n"
+}
