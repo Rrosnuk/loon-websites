@@ -1,0 +1,5 @@
+{
+ "title": "更改訂閱行事曆中的行程標題",
+ "description": "把「SVR-2 PM FOH」這類難懂的標題改成一看就懂的文字，即使行事曆是唯讀的，以後的每個行程也都會保留這項更改。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>更改訂閱行事曆中的行程標題</h1>\n<p class=\"lede\">你的行事曆來源使用代碼、冗長的字首，或者每個行程都帶著同一個名字。你想要一眼就能看懂的標題。</p></div>\n<div class=\"prose\">\n<h2>你可以更改什麼</h2>\n<ul>\n<li><strong>移除重複的文字</strong>，例如每個行程裡都有的你自己的名字或單位名稱。</li>\n<li><strong>重新排列標題的各個部分</strong>。「Alex Morgan · 調酒師 · BD」可以變成「Bistro · 調酒師 17:00–23:30」。</li>\n<li><strong>替換難懂的標題</strong>，改成你自己的文字，所有帶有該標題的行程都會一起更改。</li>\n<li><strong>在標題中加入開始和結束時間</strong>或星期幾，在月檢視和手錶上檢視時尤其方便。</li>\n</ul>\n<h2>操作方法</h2>\n<ol>\n<li>把行事曆加入 Calendar Corrector，然後點一下一個行程。</li>\n<li>用顯示的各個部分組成新標題，或輸入你自己的文字。</li>\n<li>儲存，然後選擇是僅應用於此行程、所有包含相同字詞的行程，還是整個行事曆。</li>\n</ol>\n<p>修正會自動應用於以後的行程。如果主辦者改變了措辭，App 會告訴你哪些行程不再符合。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成這些操作。它即將在 App Store 上架，第一個行事曆免費。<a href=\"/\">了解更多</a></p></div>\n</div>\n</div>\n"
+}

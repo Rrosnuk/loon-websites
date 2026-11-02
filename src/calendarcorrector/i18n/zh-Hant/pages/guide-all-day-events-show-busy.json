@@ -1,0 +1,5 @@
+{
+ "title": "讓全天行程顯示為忙碌而不是空閒",
+ "description": "訂閱行事曆中的全天行程會被算作空閒時間，別人可能會在你休息的日子給你安排會議。自動將它們標記為忙碌。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>讓全天行程顯示為忙碌而不是空閒</h1>\n<p class=\"lede\">同事在你休息的那天給你安排了會議。你的行事曆顯示你有空，因為全天行程會被算作空閒。</p></div>\n<div class=\"prose\">\n<h2>為什麼會這樣</h2>\n<p>行事曆 App 預設把全天行程視為<strong>空閒</strong>，所以訂閱行事曆中的假日、教師研習日或假期都不會佔用你的時間。預約工具和檢視你是否有空的同事看到的都是空閒的一天。</p>\n<h2>一次修正所有行程</h2>\n<ol>\n<li>把行事曆加入 Calendar Corrector。</li>\n<li>它會發現這一情況並詢問：<em>「26 個全天行程讓你顯示為空閒。要標記為忙碌嗎？」</em>點一下<strong>修正</strong>。</li>\n</ol>\n<p>如果想有所選擇，可以開啟一個行程，設定<strong>顯示為：忙碌</strong>，然後把它應用於所有包含相同字詞的行程，例如所有「教師研習日」或「休假」。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成這些操作。它即將在 App Store 上架，第一個行事曆免費。<a href=\"/\">了解更多</a></p></div>\n</div>\n</div>\n"
+}

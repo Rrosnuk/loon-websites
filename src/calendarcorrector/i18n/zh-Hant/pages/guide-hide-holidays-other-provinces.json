@@ -1,0 +1,5 @@
+{
+ "title": "隱藏不適用於你居住地區的假日",
+ "description": "國家假日行事曆包含每個省份和州的假日。只保留你所在地區的休息日，以你的語言顯示，並標記為忙碌。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>隱藏不適用於你居住地區的假日</h1>\n<p class=\"lede\">你的假日行事曆顯示了「島民日」「路易·瑞爾日」和「新斯科細亞省傳統日」，可你住在安大略省。</p></div>\n<div class=\"prose\">\n<h2>為什麼假日行事曆會顯示過多內容</h2>\n<p>內建的和下載的假日行事曆通常覆蓋整個國家。對於加拿大、美國、德國、澳洲和許多其他國家來說，這意味著一長串地區性節日、紀念日和「不放假」的行程，與你真正享有的假日混在一起。</p>\n<h2>兩種解決方法</h2>\n<ol>\n<li><strong>修正你已有的行事曆。</strong>把現有的假日行事曆加入 Calendar Corrector。它會辨識出其他地區的假日，並提出：<em>「這裡有 18 個假日不適用於安大略省。要隱藏嗎？」</em></li>\n<li><strong>或者讓 App 產生一份。</strong>新增行事曆時開啟<strong>你居住地區的假日</strong>，選擇你所在的省、州或地區，並選擇是否包括選擇性假日。無需訂閱任何內容，行事曆直接在你的裝置上產生。</li>\n</ol>\n<p>無論採用哪種方法，你都可以把假日標記為<strong>忙碌</strong>，這樣工作排班和預約工具就會把它們當作休息日。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成這些操作。它即將在 App Store 上架，第一個行事曆免費。<a href=\"/\">了解更多</a></p></div>\n</div>\n</div>\n"
+}

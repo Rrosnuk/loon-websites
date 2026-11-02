@@ -1,0 +1,5 @@
+{
+ "title": "球隊行事曆：提前到場，並為客場比賽設定顏色",
+ "description": "球隊行事曆顯示的是比賽時間，而不是你需要到場的時間。讓行程提前 30 分鐘開始，新增場館地址，並為客場比賽設定單獨的顏色。",
+ "body": "<div class=\"wrap page\">\n<p class=\"crumbs\"><a href=\"/\">Calendar Corrector</a> › <a href=\"/guides/\">指南</a></p>\n<div class=\"page-head\"><h1>球隊行事曆：提前到場，並為客場比賽設定顏色</h1>\n<p class=\"lede\">球隊行事曆上寫著比賽 7:00 開始，教練卻希望大家 6:30 就到場，而客場比賽要開一個小時的車。</p></div>\n<div class=\"prose\">\n<h2>需要修正什麼</h2>\n<ul>\n<li><strong>到場時間。</strong>讓每場比賽提前 30 或 45 分鐘開始，這樣你的行事曆顯示的就是該到場的時間。</li>\n<li><strong>地點。</strong>新增場館或球場的地址，這樣「行事曆」就能顯示地圖，並提醒你何時該出發。</li>\n<li><strong>客場比賽。</strong>為它們設定單獨的顏色：Calendar Corrector 會把它們移到一個單獨的行事曆中，例如「Hawks · 客場比賽」。</li>\n<li><strong>提醒。</strong>為時間較早的比賽新增前一天晚上的提醒。</li>\n</ul>\n<h2>操作方法</h2>\n<ol>\n<li>把球隊行事曆加入 Calendar Corrector（從列表中選擇，或貼上球隊 App 或聯盟網站提供的連結）。</li>\n<li>開啟一場比賽，更改開始時間、地點或顏色，然後把更改應用於<strong>所有包含「比賽」的行程</strong>，或包含「客場」的行程，或球隊使用的任何其他字詞。</li>\n</ol>\n<p>隨著賽程更新，新的比賽也會得到同樣的處理。</p>\n<div class=\"callout\"><p>在 iPhone、iPad 和 Mac 上，<strong>Calendar Corrector</strong> 可以替你完成這些操作。它即將在 App Store 上架，第一個行事曆免費。<a href=\"/\">了解更多</a></p></div>\n</div>\n</div>\n"
+}
