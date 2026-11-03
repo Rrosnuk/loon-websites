@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP = {"404"}
 # Sentences that only make sense in the English and French versions (both are authoritative there; other languages get a
 # note that the English version applies instead, added by the build).
-EN_ONLY = re.compile(r' Also available <a href="/fr/[a-z-]+/" hreflang="fr">in French</a>; both versions are equally authoritative\.')
+EN_ONLY = re.compile(r' (?:Also|This policy is also|These terms are also) available <a href="/fr/[a-z-]+/" hreflang="fr">in French</a>; both versions are equally authoritative\.')
 
 def main(site):
     src = ROOT / "src" / site

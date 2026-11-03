@@ -141,6 +141,9 @@ def auto_nav(site, lang):
     if site == "calendarcorrector":
         return [("home", t["features"], p + "/#features"), ("pricing", t["pricing"], p + "/#pricing"),
                 ("guides", t["guides"], p + "/guides/"), ("support", t["support"], p + "/support/")]
+    if site == "truffe":
+        return [("home", t["features"], p + "/#features"), ("privacy-h", t["privacy"], p + "/#privacy"),
+                ("support", t["help"], p + "/support/")]
     return SITES[site]["nav"]["en"]
 
 def auto_footer(site, lang):
@@ -148,6 +151,9 @@ def auto_footer(site, lang):
     if site == "calendarcorrector":
         return [(t["features"], p + "/#features"), (t["guides"], p + "/guides/"), (t["support"], p + "/support/"),
                 (t["press"], p + "/press/"), (t["privacy_policy"], p + "/privacy/"), (t["terms"], p + "/terms/")]
+    if site == "truffe":
+        return [(t["features"], p + "/#features"), (t["help"], p + "/support/"),
+                (t["privacy_policy"], p + "/privacy/"), (t["terms"], p + "/terms/")]
     return None
 
 def app_home(key, lang):
