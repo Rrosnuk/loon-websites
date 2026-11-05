@@ -21,7 +21,7 @@ python3 build.py
 
 ## Deploy
 **Live state (2 November 2026), read before deploying:**
-- `truffe`: built from this repo, in all 44 App Store languages (translations in `src/truffe/i18n/<code>/`). The site says 44 languages: the app is being localized to match before launch.
+- `truffe`: built from this repo, in all 45 app languages (English plus 44 translations in `src/truffe/i18n/<code>/`). The site says 45 languages, matching the app.
 - `calendarcorrector`: built from this repo, in all 44 App Store languages (translations in `src/calendarcorrector/i18n/<code>/`, English source text from `python3 tools/extract_i18n.py calendarcorrector`). Deploy `dist/calendarcorrector` plus the App Store screenshots in `src/remote-assets.json`.
 - `loonsoftworks`: the live home page is the 44-language redesign (built outside this repo, with the studio privacy, accessibility and legal pages from `dist/loonsoftworks` added). **Don't deploy `dist/loonsoftworks` on its own**: it would replace the 44-language home with the English/French one.
 - `lugnutapp`: the live Lugnut site is the 44-language build with a searchable language menu and a Loon Softworks footer column. **Don't run `LOON.stage('lugnutapp')`**: the re-skin only knows en/fr/es/de and would break the language menu.

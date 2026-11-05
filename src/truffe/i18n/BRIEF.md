@@ -35,7 +35,7 @@ Work in your own scratch folder (for example `/tmp/claude-0/truffe-<your first l
 - Pet and veterinary vocabulary: use the words pet owners and vets in that language actually use (vaccine names such as
   rabies, distemper; "licence" means the city or municipal pet licence/registration). Example dog and cat names can stay.
 - The comparison table on the home page compares Truffe with other apps: keep its meaning exactly.
-- The home page's "44 languages" is the number of languages; keep it.
+- The home page's "45 languages" is the number of languages; keep it.
 - Legal pages (`privacy`, `terms`): translate completely and accurately, keep every section, and don't add or soften
   obligations. The build adds a note that the English version applies, so don't add one yourself. For consistent legal
   wording, look at the Calendar Corrector translations of similar text in
