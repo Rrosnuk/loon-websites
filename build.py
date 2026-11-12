@@ -348,7 +348,6 @@ def localize_links(body, lang, by_id):
     return re.sub(r"<a\b[^>]*>", fix, body)
 
 TRUFFE_EXTRA = json.loads((SRC / "truffe" / "home-extra.json").read_text())
-TRUFFE_NAMES = json.loads((SRC / "truffe" / "mascot-names.json").read_text())   # from the app brand folder (a11y-names.json)
 
 def portrait(name, cls, px, lang=None, eager=False):
     """Maymay or Murphy in a round frame. Decorative (alt="") unless a caption names them."""
@@ -375,11 +374,10 @@ def truffe_decorate(page, body):
     x = TRUFFE_EXTRA.get(lang)
     if not x:
         return body
-    names = TRUFFE_NAMES
     meet = (f'<section class="section tinted" id="meet" aria-labelledby="meet-h">\n  <div class="wrap meet-grid">\n'
             f'    <div class="meet-pair">'
-            f'<figure>{portrait("maymay-calm", "p-meet", 200)}<figcaption>{esc(names["maymay"].get(lang, names["maymay"]["en"]))}</figcaption></figure>'
-            f'<figure>{portrait("murphy-curious", "p-meet", 200)}<figcaption>{esc(names["murphy"].get(lang, names["murphy"]["en"]))}</figcaption></figure></div>\n'
+            f'<figure>{portrait("maymay-calm", "p-meet", 200)}<figcaption>Maymay</figcaption></figure>'
+            f'<figure>{portrait("murphy-curious", "p-meet", 200)}<figcaption>Murphy</figcaption></figure></div>\n'
             f'    <div class="section-head"><h2 id="meet-h">{esc(x["meet_h"])}</h2><p>{esc(x["meet_p"])}</p><p>{esc(x["meet_p2"])}</p></div>\n'
             f'  </div>\n</section>\n\n')
     li = lambda items: "".join(f"<li>{esc(i)}</li>" for i in items)

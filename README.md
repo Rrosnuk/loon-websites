@@ -10,7 +10,6 @@ Source for **loonsoftworks.com** and the app sites **lugnut.**, **calendarcorrec
 | `src/<site>/redirects.txt` | Becomes `_redirects` (old URLs → new) |
 | `src/truffe/truffe.css` | Truffe's own look (cream paper, espresso ink, violet accent, Fraunces headings, Maymay and Murphy portraits). The build adds it to the shared file, drops rules Truffe never uses and minifies, so Truffe's `loon.css` stays under 25 KB |
 | `src/truffe/home-extra.json` | Text of the Meet Maymay and Murphy and Pricing sections, per language; a language without an entry simply doesn't show them (and its menu has no Pricing link) |
-| `src/truffe/mascot-names.json` | Maymay's and Murphy's names in every language, copied from the app's `brand/*/a11y-names.json` |
 | `tools/truffe_assets.py` | Makes the round mascot portraits and the header wordmark mask from the app's `brand/` folder |
 | `src/lugnut/lugnut.css` | Lugnut's page components; Lugnut pages are re-skinned at deploy (see `tools/deploy.js`) |
 | `src/remote-assets.json` | Files the build machine can't download (App Store screenshots); the browser fetches them at deploy |
