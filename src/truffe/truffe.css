@@ -1,0 +1,169 @@
+/* Truffe — the app's own look, on top of the shared Loon system (Nov 2026).
+   Cream paper, espresso ink and the app's violet; Maymay and Murphy in round portrait frames;
+   the thin rule from the logo under section titles. */
+
+@font-face { font-family: "Truffe Display"; font-weight: 600; font-display: swap; src: url("/fonts/fraunces-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Truffe Display"; font-weight: 600; font-display: swap; src: url("/fonts/fraunces-latin-ext-600-normal.woff2") format("woff2");
+  unicode-range: U+0100-02AF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Truffe Display"; font-weight: 600; font-display: swap; src: url("/fonts/fraunces-vietnamese-600-normal.woff2") format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+
+html[data-site="truffe"] {
+  --bg: #fffbf6; --surface: #f9eee2; --raised: #ffffff; --line: #eadccb; --fg: #2b2420; --muted: #6b6058;
+  --accent: #4e33cf; --accent-fill: #3a322c; --on-accent: #f9eee2; --tint: #ece6fd;
+  --plate: #e7e0fb; --plate-2: #f6e6d3; --ring: #fffbf6; --rule: #8f847b; --violet: #6a4cf5;
+  --display: "Truffe Display", ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  --shadow: 0 1px 2px rgb(58 50 44 / .06), 0 14px 34px rgb(58 50 44 / .10);
+  --shadow-soft: 0 10px 28px rgb(58 50 44 / .12);
+  --r-shot: 30px;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-site="truffe"] {
+    --bg: #15110e; --surface: #1e1915; --raised: #26201b; --line: #3a312a; --fg: #f4ebe0; --muted: #bbac9e;
+    --accent: #b9aaff; --accent-fill: #f1dfc8; --on-accent: #2a231e; --tint: #2b2545;
+    --plate: #2b2545; --plate-2: #2e241c; --ring: #15110e; --rule: #7d7166; --violet: #b9aaff;
+    --shadow: 0 14px 34px rgb(0 0 0 / .35); --shadow-soft: 0 10px 28px rgb(0 0 0 / .4);
+  }
+}
+
+/* Type */
+html[data-site="truffe"] main :is(h1, h2, h3),
+html[data-site="truffe"] .faq summary, html[data-site="truffe"] .plan .price { font-family: var(--display); font-weight: 600; letter-spacing: -.015em; }
+html[data-site="truffe"] main h1 { font-size: clamp(2.6rem, 1.7rem + 3.4vw, 4.3rem); line-height: 1.04; letter-spacing: -.028em; }
+html[data-site="truffe"] main h2 { font-size: clamp(1.95rem, 1.5rem + 1.8vw, 2.85rem); line-height: 1.08; }
+:is(:lang(ar), :lang(he), :lang(ur), :lang(hi), :lang(mr), :lang(bn), :lang(gu), :lang(pa), :lang(or), :lang(ta), :lang(te), :lang(kn), :lang(ml),
+    :lang(th), :lang(ja), :lang(ko), :lang(zh), :lang(ru), :lang(uk), :lang(el))[data-site="truffe"] { --display: ui-serif, "New York", Georgia, serif; }
+:is(:lang(ja), :lang(ko), :lang(zh), :lang(th), :lang(hi), :lang(ar))[data-site="truffe"] h1 { line-height: 1.25; letter-spacing: 0; }
+:is(:lang(ja), :lang(zh))[data-site="truffe"] main h1 { font-size: clamp(2rem, 1.5rem + 2.2vw, 3.1rem); word-break: auto-phrase; }
+
+/* Header: the nose icon and the wordmark from the logo (never retyped) */
+html[data-site="truffe"] .site-header { background: color-mix(in srgb, var(--bg) 92%, transparent); }
+html[data-site="truffe"] .brand img { border-radius: 22.5%; width: 34px; height: 34px; }
+.wordmark { display: block; width: 77px; height: 19px; background: var(--fg);
+  -webkit-mask: url("/img/wordmark.png") center / contain no-repeat; mask: url("/img/wordmark.png") center / contain no-repeat; }
+@media (forced-colors: active) { .wordmark { forced-color-adjust: none; background: CanvasText; } }
+html[data-site="truffe"] .primary a[aria-current="page"] { color: var(--fg); }
+
+/* Buttons and status */
+html[data-site="truffe"] .btn { border-radius: 999px; padding-inline: 22px; }
+html[data-site="truffe"] .btn-primary:hover { filter: none; background: color-mix(in srgb, var(--accent-fill) 88%, var(--violet)); }
+html[data-site="truffe"] .btn-ghost { background: transparent; border-color: color-mix(in srgb, var(--fg) 22%, transparent); }
+html[data-site="truffe"] .btn-ghost:hover { background: var(--surface); }
+html[data-site="truffe"] .status { background: var(--tint); border-color: transparent; color: var(--fg); }
+html[data-site="truffe"] .status::before { background: var(--violet); box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 22%, transparent); }
+
+/* Portraits of Maymay and Murphy: a round frame on a lavender disc */
+.portrait { display: block; border-radius: 50%; background: var(--plate); box-shadow: 0 0 0 6px var(--ring), var(--shadow-soft); }
+
+/* Hero */
+html[data-site="truffe"] .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); padding-block: var(--s8) var(--s9); gap: var(--s7); }
+html[data-site="truffe"] .hero .app-icon { display: none; }
+html[data-site="truffe"] .eyebrow { display: inline-block; color: var(--muted); font-size: .8rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--s4); }
+html[data-site="truffe"] .lede { color: var(--fg); opacity: .82; max-width: 44ch; margin-top: var(--s5); }
+html[data-site="truffe"] .trust { gap: var(--s2); color: var(--fg); font-size: .9rem; }
+html[data-site="truffe"] .trust li { padding: 6px 12px 6px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--raised); }
+html[data-site="truffe"] .trust li::before { background: var(--violet); width: 14px; height: 14px; }
+html[data-site="truffe"] .hero-media { position: relative; isolation: isolate; padding-block: var(--s5); }
+html[data-site="truffe"] .hero-media::before { content: ""; position: absolute; z-index: -1; inset-inline: 0; margin-inline: auto; top: 50%; translate: 0 -50%;
+  width: min(100%, 470px); aspect-ratio: 1; border-radius: 50%; background: var(--plate); }
+html[data-site="truffe"] .hero-media .shot { max-width: 290px; border: 0; box-shadow: var(--shadow); }
+.hero-media .p-hero { position: absolute; width: 164px; height: 164px; inset-inline-start: max(0px, calc(50% - 250px)); bottom: 7%; }
+.hero-media .p-hero-2 { position: absolute; width: 112px; height: 112px; inset-inline-end: max(0px, calc(50% - 230px)); top: 9%; }
+@media (max-width: 860px) {
+  html[data-site="truffe"] .hero { grid-template-columns: minmax(0, 1fr); padding-block: var(--s7) var(--s8); }
+  html[data-site="truffe"] .hero-media { margin-inline: auto; width: min(100%, 470px); }
+}
+@media (max-width: 520px) {
+  html[data-site="truffe"] .hero-media .shot { max-width: 230px; }
+  .hero-media .p-hero { width: 112px; height: 112px; inset-inline-start: 0; bottom: 4%; }
+  .hero-media .p-hero-2 { width: 82px; height: 82px; inset-inline-end: 2px; top: 6%; }
+}
+
+/* Section titles carry the logo's thin rule */
+html[data-site="truffe"] .section { border-top: 0; }
+html[data-site="truffe"] .section-head h2::after { content: ""; display: block; width: 64px; height: 1px; background: var(--rule); margin-top: var(--s5); }
+
+/* Feature rows: numbered like entries on a record, each screenshot on its own mat */
+html[data-site="truffe"] #features { counter-reset: feat; }
+html[data-site="truffe"] .feature { counter-increment: feat; gap: var(--s8); }
+html[data-site="truffe"] .feature .kicker { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .8rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+html[data-site="truffe"] .feature .kicker::before { content: counter(feat, decimal-leading-zero); font-family: var(--display); font-size: 1.05rem; letter-spacing: 0; color: var(--accent); }
+html[data-site="truffe"] .feature h3 { font-size: clamp(1.55rem, 1.3rem + 1vw, 2.1rem); line-height: 1.12; }
+html[data-site="truffe"] .feature li::marker { color: var(--violet); }
+html[data-site="truffe"] .feature-media { position: relative; background: var(--plate); border-radius: 36px; padding: var(--s7) var(--s5); }
+html[data-site="truffe"] .feature:nth-of-type(even) .feature-media { background: var(--plate-2); }
+html[data-site="truffe"] .feature-media .shot { max-width: 270px; border: 0; }
+.feature-media .p-feature { position: absolute; width: 120px; height: 120px; inset-inline-end: -14px; bottom: 36px; }
+@media (max-width: 520px) { .feature-media .p-feature { width: 88px; height: 88px; inset-inline-end: 8px; bottom: 16px; } html[data-site="truffe"] .feature-media .shot { max-width: 220px; } }
+
+/* Meet Maymay and Murphy */
+.meet-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s8); align-items: center; }
+.meet-pair { display: flex; justify-content: center; gap: var(--s6); margin: 0; }
+.meet-pair figure { margin: 0; text-align: center; }
+.meet-pair .portrait { width: 200px; height: 200px; }
+.meet-pair figure:nth-child(2) { margin-top: var(--s8); }
+.meet-pair figcaption { margin-top: var(--s4); font-family: "Truffe Tagline", var(--display); font-style: italic; font-size: 1.3rem; color: var(--muted); }
+.meet-grid .section-head { margin: 0; }
+.meet-grid .section-head p + p { margin-top: var(--s4); font-size: 1rem; }
+@media (max-width: 800px) { .meet-grid { grid-template-columns: minmax(0, 1fr); gap: var(--s6); } .meet-pair .portrait { width: 150px; height: 150px; } .meet-pair { gap: var(--s5); } }
+
+/* Privacy, with Murphy keeping watch */
+html[data-site="truffe"] #privacy .section-head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--s6); align-items: center; max-width: 900px; }
+#privacy .section-head .p-privacy { grid-row: span 2; width: 132px; height: 132px; }
+@media (max-width: 600px) { html[data-site="truffe"] #privacy .section-head { grid-template-columns: minmax(0, 1fr); } #privacy .section-head .p-privacy { grid-row: auto; width: 96px; height: 96px; margin-bottom: var(--s5); } }
+html[data-site="truffe"] .tile { border: 0; border-top: 2px solid var(--fg); border-radius: 0; background: transparent; padding: var(--s5) 0 0; }
+html[data-site="truffe"] .section.tinted .tile { background: transparent; }
+html[data-site="truffe"] .tile .ico { background: var(--tint); color: var(--accent); border-radius: 50%; }
+html[data-site="truffe"] .tile h3 { font-size: 1.25rem; }
+html[data-site="truffe"] .tiles { gap: var(--s6); }
+
+/* Comparison, set like a ledger */
+html[data-site="truffe"] .table-wrap { border-radius: 20px; border-color: var(--line); }
+html[data-site="truffe"] table { min-width: 680px; }
+html[data-site="truffe"] thead th { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; background: var(--raised); color: var(--muted); border-bottom: 2px solid var(--fg); }
+html[data-site="truffe"] thead th.us { color: var(--fg); }
+html[data-site="truffe"] tbody th { font-weight: 600; }
+html[data-site="truffe"] td.us, html[data-site="truffe"] th.us { background: var(--tint); }
+
+/* Pricing */
+html[data-site="truffe"] .plans { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--s5); max-width: 900px; }
+html[data-site="truffe"] .plan { border-radius: 28px; padding: var(--s6); background: var(--raised); display: flex; flex-direction: column; }
+html[data-site="truffe"] .plan.featured { border: 2px solid var(--fg); position: relative; }
+html[data-site="truffe"] .plan h3 { font-size: 1.5rem; }
+html[data-site="truffe"] .plan .price { font-size: 2.4rem; letter-spacing: -.02em; margin: var(--s3) 0 0; }
+.plan .plan-for { color: var(--muted); margin: var(--s2) 0 0; }
+.plan .rates { list-style: none; padding: 0 !important; margin: var(--s4) 0 0 !important; display: grid; gap: 0; }
+.plan .rates li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 10px 0; border-bottom: 1px solid var(--line); margin: 0 !important; }
+.plan .rates li:first-child { border-top: 1px solid var(--line); }
+.plan .rates strong { font-family: var(--display); font-weight: 600; font-size: 1.35rem; letter-spacing: -.01em; }
+.plan .rates span { color: var(--muted); }
+.plan .ticks { list-style: none; padding: 0 !important; margin: var(--s5) 0 0 !important; display: grid; gap: 10px; }
+.plan .ticks li { display: flex; gap: 10px; margin: 0 !important; }
+.plan .ticks li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--tint);
+  box-shadow: inset 0 0 0 5px var(--tint), inset 0 0 0 9px var(--violet); }
+html[data-site="truffe"] .plans + .fine { max-width: 900px; }
+
+/* FAQ */
+html[data-site="truffe"] .faq summary { font-size: 1.2rem; }
+html[data-site="truffe"] .faq summary::after { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); font-size: 1.2rem; color: var(--fg); }
+html[data-site="truffe"] .faq details > :not(summary) { color: var(--fg); opacity: .85; }
+
+/* Closing: Maymay cheering, the tagline in the logo's italic */
+html[data-site="truffe"] .closing { border-top: 0; padding-block: var(--s9); }
+.closing .p-closing { width: 176px; height: 176px; margin: 0 auto var(--s6); }
+html[data-site="truffe"] .closing .rule { background: var(--rule); opacity: 1; }
+
+/* Reading pages and the 404 */
+html[data-site="truffe"] .page-head h1 { font-size: clamp(2.1rem, 1.6rem + 2vw, 3rem); }
+.notfound .p-404 { width: 168px; height: 168px; margin: 0 auto var(--s6); }
+html[data-site="truffe"] .notfound .app-icon { display: none; }
+html[data-site="truffe"] .summary { background: var(--tint); border-radius: 20px; }
+html[data-site="truffe"] .contact-box { border-radius: 20px; }
+
+/* Scripts without capitals don't take letter-spaced labels */
+:is(:lang(ja), :lang(ko), :lang(zh)) :is(.eyebrow, .kicker, .site-footer h2) { letter-spacing: 0 !important; }
+
+/* Footer */
+html[data-site="truffe"] .site-footer { background: var(--surface); border-top: 0; }
+html[data-site="truffe"] .site-footer h2 { font-size: .78rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+html[data-site="truffe"] .site-footer h2 .studio-mark { color: var(--muted); font-weight: 650; }

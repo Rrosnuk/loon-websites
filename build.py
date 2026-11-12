@@ -82,8 +82,7 @@ SITES = {
                         "fr": [("apps", "Apps", "/fr/#apps"), ("how", "Notre façon de faire", "/fr/#how"), ("contact", "Nous joindre", "/fr/#contact")]}),
     "truffe": dict(project="truffe", domain=APPS["truffe"]["url"], key="truffe", name="Truffe", langs=["en", "fr"],
                    icon="/img/truffe-icon.webp", theme="#F9EEE2", og={"en": "/img/og.jpg", "fr": "/img/og-fr.jpg"}, favicon=("/favicon.png", "image/png"),
-                   nav={"en": [("home", "Features", "/#features"), ("privacy-h", "Privacy", "/#privacy"), ("support", "Help", "/support/")],
-                        "fr": [("home", "Fonctions", "/fr/#features"), ("privacy-h", "Confidentialité", "/fr/#privacy"), ("support", "Aide", "/fr/aide/")]},
+                   nav={}, css_extra="truffe/truffe.css", fonts=["/fonts/fraunces-latin-600-normal.woff2"],
                    footer_app={"en": [("Features", "/#features"), ("Help", "/support/"), ("Privacy policy", "/privacy/"), ("Terms of use", "/terms/")],
                                "fr": [("Fonctions", "/fr/#features"), ("Aide", "/fr/aide/"), ("Confidentialité", "/fr/confidentialite/"), ("Conditions d’utilisation", "/fr/conditions/")]}),
     "calendarcorrector": dict(project="calendarcorrector", domain=APPS["calendar"]["url"], key="calendar", name="Calendar Corrector", langs=["en", "fr"],
@@ -142,8 +141,10 @@ def auto_nav(site, lang):
         return [("home", t["features"], p + "/#features"), ("pricing", t["pricing"], p + "/#pricing"),
                 ("guides", t["guides"], p + "/guides/"), ("support", t["support"], p + "/support/")]
     if site == "truffe":
-        return [("home", t["features"], p + "/#features"), ("privacy-h", t["privacy"], p + "/#privacy"),
-                ("support", t["help"], p + "/support/")]
+        nav = [("home", t["features"], p + "/#features")]
+        if lang in TRUFFE_EXTRA:
+            nav.append(("pricing", t["pricing"], p + "/#pricing"))
+        return nav + [("privacy-h", t["privacy"], p + "/#privacy"), ("support", t["help"], p + "/support/")]
     return SITES[site]["nav"]["en"]
 
 def auto_footer(site, lang):
@@ -188,7 +189,10 @@ def header(site, page, alts):
     lang, s = page["lang"], SITES[page["site"]]
     t = T[lang]
     home = lp(lang) + "/"
-    if s["key"]:
+    if page["site"] == "truffe":
+        brand = (f'<a class="brand" href="{home}"><img src="{s["icon"]}" alt="" width="34" height="34">'
+                 f'<span class="wordmark"><span class="visually-hidden">{esc(s["name"])}</span></span></a>')
+    elif s["key"]:
         brand = f'<a class="brand" href="{home}"><img src="{s["icon"]}" alt="" width="32" height="32"><span>{esc(s["name"])}</span></a>'
     else:
         brand = f'<a class="brand" href="{home}"><img src="/favicon.svg" alt="" width="32" height="32"><span>Loon Softworks</span></a>'
@@ -261,6 +265,8 @@ def head(page, alts):
     fav_href, fav_type = s.get("favicon", ("/favicon.svg", "image/svg+xml"))
     ld = page.get("jsonld", "")
     robots = '<meta name="robots" content="noindex">\n' if page["path"] == "/404.html" else ""
+    latin = not LANG_INFO[lang].get("rtl") and lang not in NON_LATIN
+    preload = "".join(f'<link rel="preload" href="{f}" as="font" type="font/woff2" crossorigin>\n' for f in s.get("fonts", [])) if latin else ""
     return f"""<!doctype html>
 <html lang="{HTML_LANG[lang]}"{' dir="rtl"' if LANG_INFO[lang].get("rtl") else ""} data-site="{ {'studio':'studio','truffe':'truffe','calendarcorrector':'calendar'}[page['site']] }">
 <head>
@@ -282,7 +288,7 @@ def head(page, alts):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{fav_href}" type="{fav_type}">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/loon.css?v={CSS_HASH}">
+{preload}<link rel="stylesheet" href="/loon.css?v={site_css(page['site'])[1]}">
 {ld}</head>
 <body>
 """
@@ -341,6 +347,58 @@ def localize_links(body, lang, by_id):
         return re.sub(r'href="(/[^"]*)"', sub, tag, count=1)
     return re.sub(r"<a\b[^>]*>", fix, body)
 
+TRUFFE_EXTRA = json.loads((SRC / "truffe" / "home-extra.json").read_text())
+TRUFFE_NAMES = json.loads((SRC / "truffe" / "mascot-names.json").read_text())   # from the app brand folder (a11y-names.json)
+
+def portrait(name, cls, px, lang=None, eager=False):
+    """Maymay or Murphy in a round frame. Decorative (alt="") unless a caption names them."""
+    base = f"/img/mascot/{name}"
+    lazy = "" if eager else ' loading="lazy" decoding="async"'
+    return (f'<img class="portrait {cls}" src="{base}-sm.webp" srcset="{base}-sm.webp 288w, {base}.webp 480w" sizes="{px}px" '
+            f'width="{px}" height="{px}" alt=""{lazy}>')
+
+def truffe_decorate(page, body):
+    lang, pid = page["lang"], page["id"]
+    if pid == "404":
+        return body.replace('<h1>', portrait("maymay-curious", "p-404", 168, eager=True) + "\n  <h1>", 1)
+    if pid != "home":
+        return body
+    # hero: Maymay and Murphy beside the phone
+    body = re.sub(r'(<div class="hero-media">.*?</picture>)', lambda m: m.group(1) + portrait("maymay", "p-hero", 164, eager=True)
+                  + portrait("murphy", "p-hero-2", 112, eager=True), body, count=1, flags=re.S)
+    # the date question: Maymay tilts her head
+    body = re.sub(r'(<div class="feature-media">.*?</picture>)', lambda m: m.group(1) + portrait("maymay-curious", "p-feature", 120), body, count=1, flags=re.S)
+    # privacy: Murphy keeps watch
+    body = re.sub(r'(id="privacy".*?<div class="section-head">)', lambda m: m.group(1) + portrait("murphy-sleepy", "p-privacy", 132), body, count=1, flags=re.S)
+    # closing: Maymay cheering replaces the nose (the nose stays the icon in the header)
+    body = re.sub(r'<img class="closing-nose"[^>]*>', portrait("maymay-cheer", "p-closing", 176), body, count=1)
+    x = TRUFFE_EXTRA.get(lang)
+    if not x:
+        return body
+    names = TRUFFE_NAMES
+    meet = (f'<section class="section tinted" id="meet" aria-labelledby="meet-h">\n  <div class="wrap meet-grid">\n'
+            f'    <div class="meet-pair">'
+            f'<figure>{portrait("maymay-calm", "p-meet", 200)}<figcaption>{esc(names["maymay"].get(lang, names["maymay"]["en"]))}</figcaption></figure>'
+            f'<figure>{portrait("murphy-curious", "p-meet", 200)}<figcaption>{esc(names["murphy"].get(lang, names["murphy"]["en"]))}</figcaption></figure></div>\n'
+            f'    <div class="section-head"><h2 id="meet-h">{esc(x["meet_h"])}</h2><p>{esc(x["meet_p"])}</p><p>{esc(x["meet_p2"])}</p></div>\n'
+            f'  </div>\n</section>\n\n')
+    li = lambda items: "".join(f"<li>{esc(i)}</li>" for i in items)
+    rates = "".join(f"<li><strong>{esc(a)}</strong> <span>{esc(b)}</span></li>" for a, b in x["rates"])
+    pricing = (f'<section class="section" id="pricing" aria-labelledby="pricing-h">\n  <div class="wrap">\n'
+               f'    <div class="section-head"><h2 id="pricing-h">{esc(x["pricing_h"])}</h2><p>{esc(x["pricing_p"])}</p></div>\n'
+               f'    <div class="plans">\n'
+               f'      <div class="plan"><h3>{esc(x["free_name"])}</h3><p class="price">{esc(x["free_price"])}</p><p class="plan-for">{esc(x["free_for"])}</p><ul class="ticks">{li(x["free_items"])}</ul></div>\n'
+               f'      <div class="plan featured"><h3>{esc(x["plus_name"])}</h3><p class="plan-for">{esc(x["plus_for"])}</p><ul class="rates">{rates}</ul><ul class="ticks">{li(x["plus_items"])}</ul></div>\n'
+               f'    </div>\n    <p class="fine">{esc(x["pricing_fine"])}</p>\n  </div>\n</section>\n\n')
+    cmp = re.search(r'<section class="section tinted" aria-labelledby="compare-h">.*?</section>\s*', body, re.S)
+    if cmp:
+        body = body.replace(cmp.group(0), "", 1)
+        body = re.sub(r'(<section class="section" id="privacy".*?</section>\s*)', lambda m: m.group(1) + cmp.group(0), body, count=1, flags=re.S)
+    body, n1 = re.subn(r'(<section class="section" id="privacy")', lambda m: meet + m.group(1), body, count=1)
+    body, n2 = re.subn(r'(<section class="section tinted" aria-labelledby="faq-h")', lambda m: pricing + m.group(1), body, count=1)
+    assert n1 and n2, f"Truffe {lang}: couldn't place the Meet or Pricing section"
+    return body
+
 def build_site(site):
     s = SITES[site]
     out = DIST / s["project"]
@@ -355,6 +413,8 @@ def build_site(site):
         body = p["body"].replace("{{UPDATED}}", UPDATED[p["lang"]]).replace("{{EMAIL}}", EMAIL)
         if p["lang"] != "en":
             body = localize_links(body, p["lang"], by_id)
+        if site == "truffe":
+            body = truffe_decorate(p, body)
         if LANG_INFO[p["lang"]].get("rtl"):   # keep the street address in left-to-right order
             body = body.replace(ADDRESS, f'<span dir="ltr">{ADDRESS}</span>')
         doc = (head(p, alts) + android_note(site, p["lang"]) + "\n" + header(site, p, alts) +
@@ -369,7 +429,7 @@ def build_site(site):
         for f in st.rglob("*"):
             if f.is_file():
                 d = out / f.relative_to(st); d.parent.mkdir(parents=True, exist_ok=True); shutil.copy(f, d)
-    shutil.copy(SRC / "shared" / "loon.css", out / "loon.css")
+    (out / "loon.css").write_text(site_css(site)[0])
     if s["key"]: (out / "site.js").write_text(ANDROID_JS + (PICKER_SCRIPT if len(s["langs"]) > 2 else ""))
     (out / "img").mkdir(exist_ok=True)
     for a in APPS.values():
@@ -406,6 +466,94 @@ HEADERS = """/*
 """
 
 CSS_HASH = hashlib.sha1((SRC / "shared" / "loon.css").read_bytes()).hexdigest()[:8]
+NON_LATIN = {"ar", "he", "ur", "hi", "mr", "bn", "gu", "pa", "or", "ta", "te", "kn", "ml", "th", "ja", "ko", "zh-Hans", "zh-Hant", "ru", "uk", "el"}
+
+def minify_css(css):
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{};,>])\s*", r"\1", css)
+    css = re.sub(r":\s+", ":", css)   # declarations only: minified selectors never have a space after a colon
+    return css.replace(";}", "}").strip() + "\n"
+
+def used_classes(site):
+    """Every class name that a page of this site can carry (hand-written pages, translations, the chrome and decorations)."""
+    text = " ".join(f.read_text() for f in (SRC / site).rglob("*") if f.suffix in (".html", ".json"))
+    found = set()
+    for m in re.findall(r'class=\\?"([^"\\]+)', text):
+        found |= set(m.split())
+    return found | CHROME_CLASSES
+
+# classes the shared chrome and the Truffe decorations add (header, footer, language menu, portraits, extra sections)
+CHROME_CLASSES = set("""skip site-header wrap bar brand wordmark visually-hidden primary lang langpick langpanel site-footer cols studio-mark
+fineprint android-note translated-note portrait p-hero p-hero-2 p-feature p-privacy p-closing p-404 p-meet meet meet-grid meet-pair
+section tinted section-head plans plan featured price plan-for rates ticks fine lede""".split())
+
+def purge_css(css, site):
+    """Drop rules whose selectors all name a class this site never uses (a simple, safe purge: unknown means keep)."""
+    used = used_classes(site)
+    me = {"studio": "studio", "truffe": "truffe", "calendarcorrector": "calendar"}.get(site)
+    def keep_sel(sel):
+        other = re.findall(r'data-site="([a-z]+)"', sel)
+        if any(o != me for o in other):
+            return False
+        return all(c in used for c in re.findall(r"\.([A-Za-z][\w-]*)", re.sub(r'\[[^\]]*\]|"[^"]*"|\([^)]*\)', "", sel)))
+    out, i = [], 0
+    while i < len(css):
+        j = css.find("{", i)
+        if j < 0: out.append(css[i:]); break
+        head = css[i:j]
+        depth, k = 1, j + 1
+        while depth:
+            depth += {"{": 1, "}": -1}.get(css[k], 0); k += 1
+        inner = css[j + 1:k - 1]
+        if head.lstrip().startswith("@media") or head.lstrip().startswith("@supports"):
+            sub = purge_css(inner, site) if "{" in inner else inner
+            if sub.strip(): out.append(head + "{" + sub + "}")
+        elif head.lstrip().startswith("@"):
+            out.append(head + "{" + inner + "}")
+        else:
+            sels = [x for x in head.split(",") if keep_sel(x)]
+            if sels: out.append(",".join(sels) + "{" + inner + "}")
+        i = k
+    return "".join(out)
+
+def dedupe_css(css):
+    """Within one block, drop a rule when a later rule with the same selector sets every property it sets."""
+    parts = re.findall(r'(@[^{]+\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}|[^{}@]+\{[^{}]*\})', css)
+    if "".join(parts) != css:
+        return css   # something the simple parser doesn't follow: leave the file as it is
+    def props(body): return {d.split(":", 1)[0].strip() for d in body.split(";") if ":" in d}
+    out = []
+    for i, r in enumerate(parts):
+        if r.startswith("@media"):
+            head, inner = r[:r.index("{")], r[r.index("{") + 1:-1]
+            out.append(head + "{" + dedupe_css(inner) + "}"); continue
+        if r.startswith("@"):
+            out.append(r); continue
+        sel, body = r[:r.index("{")], r[r.index("{") + 1:-1]
+        mine = props(body)
+        if any(q.startswith(sel + "{") and mine <= props(q[len(sel) + 1:-1]) for q in parts[i + 1:]):
+            continue
+        out.append(r)
+    return "".join(out)
+
+_css_cache = {}
+def site_css(site):
+    """(stylesheet text, short hash). Sites with their own look get the shared file plus theirs, minified."""
+    if site not in _css_cache:
+        extra = SITES[site].get("css_extra")
+        css = (SRC / "shared" / "loon.css").read_text()
+        if extra:
+            css = purge_css(minify_css(css + "\n" + (SRC / extra).read_text()), site)
+            # this file only ever loads on this site, so its site selector can be the shortest one
+            me = {"truffe": "truffe"}.get(site)
+            if me:
+                css = css.replace(f'html[data-site="{me}"]', ":root").replace(f'[data-site="{me}"]', ":root")
+            css = dedupe_css(css.strip()) + "\n"
+            # every browser this site supports reads the unprefixed mask, so the -webkit- copy is dead weight
+            css = re.sub(r"-webkit-mask:[^;}]*;(?=mask:)", "", css)
+        _css_cache[site] = (css, hashlib.sha1(css.encode()).hexdigest()[:8])
+    return _css_cache[site]
 
 def build_lugnut_overlay():
     """Lugnut keeps its pages; at deploy the browser re-skins them with this CSS and chrome."""

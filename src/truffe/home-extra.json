@@ -1,0 +1,34 @@
+{
+ "en": {
+  "meet_h": "Meet Maymay and Murphy",
+  "meet_p": "Truffe’s two mascots are the developer’s own dog and cat.",
+  "meet_p2": "Maymay cheers when you’re all caught up and tilts her head when something is due. Murphy keeps you company around the app.",
+  "pricing_h": "Free for one pet. Plus when you need more.",
+  "pricing_p": "Start free, with no account and no card. Upgrade only if you want more pets or more scans.",
+  "free_name": "Free",
+  "free_price": "$0",
+  "free_for": "For one pet",
+  "free_items": ["One pet", "5 scanned papers", "Typing records in, always free", "Reminders, costs, reaction log and full export"],
+  "plus_name": "Truffe Plus",
+  "plus_for": "For all your pets",
+  "rates": [["US$2.99", "a month"], ["US$19.99", "a year, first week free for new subscribers"], ["US$49.99", "once, for life"]],
+  "plus_items": ["Unlimited pets", "Unlimited scans", "Vaccine card PDF for the groomer or kennel", "If Plus ends, every record stays readable and exportable"],
+  "pricing_fine": "Prices in US dollars. The App Store shows the price for your country, in your currency, before you pay. Billed by Apple; cancel any time in your Apple Account settings. Truffe Plus isn’t shared through Family Sharing."
+ },
+ "fr": {
+  "meet_h": "Voici Maymay et Murphy",
+  "meet_p": "Les deux mascottes de Truffe sont la chienne et le chat du développeur.",
+  "meet_p2": "Maymay se réjouit quand tout est à jour et penche la tête quand quelque chose arrive à échéance. Murphy vous tient compagnie dans l’app.",
+  "pricing_h": "Gratuit pour un animal. Plus quand il en faut davantage.",
+  "pricing_p": "Commencez gratuitement, sans compte ni carte. Passez à Plus seulement si vous voulez plus d’animaux ou plus de numérisations.",
+  "free_name": "Gratuit",
+  "free_price": "0 $",
+  "free_for": "Pour un animal",
+  "free_items": ["Un animal", "5 documents numérisés", "Saisie des dossiers à la main, toujours gratuite", "Rappels, dépenses, journal des réactions et exportation complète"],
+  "plus_name": "Truffe Plus",
+  "plus_for": "Pour tous vos animaux",
+  "rates": [["2,99 $ US", "par mois"], ["19,99 $ US", "par année, première semaine gratuite pour les nouveaux abonnés"], ["49,99 $ US", "une seule fois, à vie"]],
+  "plus_items": ["Animaux illimités", "Numérisations illimitées", "Carnet de vaccination en PDF pour le toiletteur ou la pension", "Si Plus prend fin, chaque dossier reste lisible et exportable"],
+  "pricing_fine": "Prix en dollars américains. L’App Store affiche le prix de votre pays, dans votre devise, avant que vous payiez. Facturé par Apple; annulez en tout temps dans les réglages de votre compte Apple. Truffe Plus n’est pas partagé avec le Partage familial."
+ }
+}
