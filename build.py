@@ -21,6 +21,7 @@ OG_LOCALE = {"en": "en_CA", "fr": "fr_CA", "es": "es_ES", "de": "de_DE"}
 
 STUDIO = "https://loonsoftworks.com"
 APPS = {
+    "aurochs": {"name": "Aurochs Fitness", "url": "https://aurochs.loonsoftworks.com", "icon": "aurochs-icon.webp"},
     "lugnut": {"name": "Lugnut", "url": "https://lugnut.loonsoftworks.com", "icon": "lugnut-icon.svg"},
     "calendar": {"name": "Calendar Corrector", "url": "https://calendarcorrector.loonsoftworks.com", "icon": "calendar-icon.svg"},
     "truffe": {"name": "Truffe", "url": "https://truffe.loonsoftworks.com", "icon": "truffe-icon.webp"},
@@ -158,7 +159,7 @@ def auto_footer(site, lang):
     return None
 
 def app_home(key, lang):
-    langs = LANGS if key == "lugnut" else SITES["truffe" if key == "truffe" else "calendarcorrector"]["langs"]
+    langs = LANGS if key in ("lugnut", "aurochs") else SITES["truffe" if key == "truffe" else "calendarcorrector"]["langs"]
     return APPS[key]["url"] + (lp(lang) + "/" if lang in langs else "/")
 
 def lang_picker(s, lang, alts, label):
