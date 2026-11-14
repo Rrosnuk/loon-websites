@@ -82,6 +82,7 @@ SITES = {
                         "fr": [("apps", "Apps", "/fr/#apps"), ("how", "Notre façon de faire", "/fr/#how"), ("contact", "Nous joindre", "/fr/#contact")]}),
     "truffe": dict(project="truffe", domain=APPS["truffe"]["url"], key="truffe", name="Truffe", langs=["en", "fr"],
                    icon="/img/truffe-icon.webp", theme="#F9EEE2", og={"en": "/img/og.jpg", "fr": "/img/og-fr.jpg"}, favicon=("/favicon.png", "image/png"),
+                   appstore="6831324451",
                    nav={"en": [("home", "Features", "/#features"), ("privacy-h", "Privacy", "/#privacy"), ("support", "Help", "/support/")],
                         "fr": [("home", "Fonctions", "/fr/#features"), ("privacy-h", "Confidentialité", "/fr/#privacy"), ("support", "Aide", "/fr/aide/")]},
                    footer_app={"en": [("Features", "/#features"), ("Help", "/support/"), ("Privacy policy", "/privacy/"), ("Terms of use", "/terms/")],
@@ -261,6 +262,12 @@ def head(page, alts):
     fav_href, fav_type = s.get("favicon", ("/favicon.svg", "image/svg+xml"))
     ld = page.get("jsonld", "")
     robots = '<meta name="robots" content="noindex">\n' if page["path"] == "/404.html" else ""
+    if s.get("appstore"):
+        # Safari's Smart App Banner, and JSON-LD for the app on each home page.
+        robots += f'<meta name="apple-itunes-app" content="app-id={s['appstore']}">\n'
+        if page["path"] in ("/", f"/{lang}/") and not ld:
+            ld = jsonld_app(page["site"], lang, desc, "iOS 16.4 or later", "LifestyleApplication",
+                            {"@type": "Offer", "price": "0", "priceCurrency": "USD", "url": f"https://apps.apple.com/app/id{s['appstore']}"})
     return f"""<!doctype html>
 <html lang="{HTML_LANG[lang]}"{' dir="rtl"' if LANG_INFO[lang].get("rtl") else ""} data-site="{ {'studio':'studio','truffe':'truffe','calendarcorrector':'calendar'}[page['site']] }">
 <head>
